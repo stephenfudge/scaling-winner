@@ -5,8 +5,8 @@ export default function Music({ music }) {
   return (
     <div>
       <h1>Music DVDs and BluRays</h1>
-      <Link href='/music/brd'><button>BluRays</button></Link>
-      <Link href='/music/dvd'><button>DVDs</button></Link>
+      <Link href='/music/brd'><button className="btn">BluRays</button></Link>
+      <Link href='/music/dvd'><button className="btn">DVDs</button></Link>
            <ul>
         {music.map((film) => (
           <li>

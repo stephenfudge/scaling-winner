@@ -5,27 +5,51 @@ export default function Wrestling({ wrestling }) {
   return (
     <div>
       <h1>Professional Wrestling DVDs and BluRays</h1>
-      <Link href="/wrestling/brd">
-        <button>BluRays</button>
+      {/* <Link href="/wrestling/brd">
+        <button className="btn">BluRays</button>
       </Link>
       <Link href="/wrestling/dvd">
-        <button>DVDs</button>
+        <button className="btn">DVDs</button>
       </Link>
       <Link href="/wrestling/compilation">
-        <button>Compilations</button>
+        <button className="btn">Compilations</button>
       </Link>
       <Link href="/wrestling/documentary">
-        <button>Documentaries</button>
+        <button className="btn">Documentaries</button>
       </Link>
       <Link href="/wrestling/ppv">
-        <button>PPVs</button>
+        <button className="btn">PPVs</button>
       </Link>
       <Link href="/wrestling/wwe">
-        <button>WWE Content</button>
+        <button className="btn">WWE Content</button>
       </Link>
       <Link href="/wrestling/nonwwe">
-        <button>Non WWE Content</button>
-      </Link>
+        <button className="btn">Non WWE Content</button>
+      </Link> */}
+      <div className="dropdown">
+  <label tabIndex={0} className="btn m-1">Media Format</label>
+  <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+    <li><a href="/wrestling/brd">BluRays</a></li>
+    <li><a href="/wrestling/dvd">DVDs</a></li>
+  </ul>
+</div>
+  <div className="dropdown">
+  <label tabIndex={0} className="btn m-1">Presentation Style</label>
+  <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+    <li><a href="/wrestling/compilation">Compilations</a></li>
+    <li><a href="/wrestling/documentary">Documentaries</a></li>
+    <li><a href="/wrestling/ppv">PPVs</a></li>
+  </ul>
+</div>
+<div className="dropdown">
+  <label tabIndex={0} className="btn m-1">Promotion</label>
+  <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+    <li><a href="/wrestling/nonwwe">Non WWE Content</a></li>
+    <li><a href='/wrestling/wwe'>WWE Content</a></li>
+  </ul>
+</div>
+
+
       <ul>
         {wrestling.map((film) => (
           <li>

@@ -19,10 +19,10 @@ export default function Navbar(){
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><a href='/films'>Feature Films</a></li>
-      <li><a href='/music'>Music</a></li>
-      <li><a href='/tv'>TV</a></li>
-      <li><a href='/wrestling'>Wrestling</a></li>
+      <li><a href='/films' className="btn btn-outline btn-secondary mx-2">Feature Films</a></li>
+      <li><a href='/music' className="btn btn-outline btn-secondary mx-2">Music</a></li>
+      <li><a href='/tv' className="btn btn-outline btn-secondary mx-2">TV Shows</a></li>
+      <li><a href='/wrestling' className="btn btn-outline btn-secondary mx-2">Wrestling</a></li>
     </ul>
   </div>
   {/* <div className="navbar-end">

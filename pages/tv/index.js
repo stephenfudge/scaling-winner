@@ -5,8 +5,8 @@ export default function Tv ({ tv }) {
     return (
         <div>
             <h1>Television DVDs and BluRays</h1>
-            <Link href='/tv/brd'><button>BluRays</button></Link>
-            <Link href='/tv/dvd'><button>DVDs</button></Link>
+            <Link href='/tv/brd'><button className="btn">BluRays</button></Link>
+            <Link href='/tv/dvd'><button className="btn">DVDs</button></Link>
             <ul>
                 {tv.map((film) => (
                     <li>
