@@ -1,9 +1,17 @@
 import clientPromise from "../../lib/mongodb";
+import Link from "next/link";
 
 export default function Wrestling ({ wrestling }) {
     return (
         <div>
             <h1>Professional Wrestling DVDs and BluRays</h1>
+            <Link href='/wrestling/brd'><button>BluRays</button></Link>
+            <Link href='/wrestling/dvd'><button>DVDs</button></Link>
+            <Link href='/wrestling/compilation'><button>Compilations</button></Link>
+            <Link href='/wrestling/documentary'><button>Documentaries</button></Link>
+            <Link href='/wrestling/ppv'><button>PPVs</button></Link>
+            <Link href='/wrestling/wwe'><button>WWE Content</button></Link>
+            <Link href='/wrestling/nonwwe'><button>Non WWE Content</button></Link>
             <ul>
                 {wrestling.map((film) => (
                     <li>
