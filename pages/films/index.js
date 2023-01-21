@@ -1,9 +1,13 @@
 import clientPromise from "../../lib/mongodb";
+import Link from 'next/link';
+
 
 export default function Films({ films }) {
   return (
     <div>
       <h1>Feature Films</h1>
+    <Link href='/films/brd'><button>BluRays</button></Link>
+    <Link href='/films/dvd'><button>DVDs</button></Link>
       <ul>
         {films.map((film) => (
           <li>
