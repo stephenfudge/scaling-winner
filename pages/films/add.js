@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-const AddMusic = () => {
-  const [artist, setArtist] = useState("");
+export default function AddFilm() {
   const [title, setTitle] = useState("");
   const [format, setFormat] = useState("");
   const [error, setError] = useState("");
@@ -9,12 +8,11 @@ const AddMusic = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (artist && title && format) {
+    if (title && format) {
       try {
-        let response = await fetch("/api/addMusic", {
+        let response = await fetch("/api/addFilm", {
           method: "POST",
           body: JSON.stringify({
-            artist,
             title,
             format,
           }),
@@ -23,7 +21,6 @@ const AddMusic = () => {
           },
         });
         response = await response.json();
-        setArtist("");
         setTitle("");
         setFormat("");
         setError("");
@@ -38,29 +35,9 @@ const AddMusic = () => {
 
   return (
     <div>
-      <h1>Add Music</h1>
+      <h1>Add Film</h1>
       <form className="w-full max-w-sm" onSubmit={handleSubmit}>
-          {/* Artist */}
-        <div className="md:flex md:items-center mb-6">
-          <div className="md:w-1/3">
-            <label
-              htmlFor="artist"
-              className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-            >
-              Artist
-            </label>
-          </div>
-          <div className="md:w-2/3">
-            <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-              type="text"
-              name="artist"
-              value={artist}
-              onChange={(e) => setArtist(e.target.value)}
-            />
-          </div>
-        </div>
-
+      
         {/* Title */}
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
@@ -81,25 +58,6 @@ const AddMusic = () => {
             />
           </div>
         </div>
-        {/* Format */}
-
-        {/* Input Box */}
-        {/* <div className="md:flex md:items-center mb-6">
-
-            <div className="md:w-1/3">
-            <label htmlFor="format" className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">Format</label>
-                </div>
-                <div className="md:w-2/3">
-            <input
-            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-              type="text"
-              name="format"
-              value={format}
-              onChange={(e) => setFormat(e.target.value)}
-              />
-
-                </div>
-              </div> */}
 
         {/* Format Dropdown */}
         <div className="md:flex md:items-center mb-6">
@@ -142,6 +100,4 @@ const AddMusic = () => {
       </form>
     </div>
   );
-};
-
-export default AddMusic;
+}
