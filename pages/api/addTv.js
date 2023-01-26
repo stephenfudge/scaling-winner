@@ -5,7 +5,7 @@ export default async function handler(req, res) {
         const client = await clientPromise;
         const db = client.db("movies");
         const collection = db.collection("tv");
-        const { title, format } = req.body;
+        const { title, season, format } = req.body;
         const post = await collection.insertOne({
         title,
         season,
