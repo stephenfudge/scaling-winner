@@ -1,13 +1,16 @@
 import clientPromise from "../../lib/mongodb";
-import Link from 'next/link';
-
+import Link from "next/link";
 
 export default function Films({ films }) {
   return (
     <div>
       <h1>Feature Films</h1>
-    <Link href='/films/brd'><button className="btn mx-2">BluRays</button></Link>
-    <Link href='/films/dvd'><button className="btn">DVDs</button></Link>
+      <Link href="/films/brd">
+        <button className="btn mx-2">BluRays</button>
+      </Link>
+      <Link href="/films/dvd">
+        <button className="btn">DVDs</button>
+      </Link>
       <ul>
         {films.map((film) => (
           <li>
@@ -28,7 +31,7 @@ export async function getServerSideProps() {
     const films = await db
       .collection("films")
       .find({})
-      .sort({})
+      .sort({ title: 1 })
       // .limit(20)
       .toArray();
 

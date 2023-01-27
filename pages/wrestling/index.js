@@ -27,28 +27,56 @@ export default function Wrestling({ wrestling }) {
         <button className="btn">Non WWE Content</button>
       </Link> */}
       <div className="dropdown">
-  <label tabIndex={0} className="btn m-1">Media Format</label>
-  <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-    <li><a href="/wrestling/brd">BluRays</a></li>
-    <li><a href="/wrestling/dvd">DVDs</a></li>
-  </ul>
-</div>
-  <div className="dropdown">
-  <label tabIndex={0} className="btn m-1">Presentation Style</label>
-  <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-    <li><a href="/wrestling/compilation">Compilations</a></li>
-    <li><a href="/wrestling/documentary">Documentaries</a></li>
-    <li><a href="/wrestling/ppv">PPVs</a></li>
-  </ul>
-</div>
-<div className="dropdown">
-  <label tabIndex={0} className="btn m-1">Promotion</label>
-  <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-    <li><a href="/wrestling/nonwwe">Non WWE Content</a></li>
-    <li><a href='/wrestling/wwe'>WWE Content</a></li>
-  </ul>
-</div>
-
+        <label tabIndex={0} className="btn m-1">
+          Media Format
+        </label>
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <a href="/wrestling/brd">BluRays</a>
+          </li>
+          <li>
+            <a href="/wrestling/dvd">DVDs</a>
+          </li>
+        </ul>
+      </div>
+      <div className="dropdown">
+        <label tabIndex={0} className="btn m-1">
+          Presentation Style
+        </label>
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <a href="/wrestling/compilation">Compilations</a>
+          </li>
+          <li>
+            <a href="/wrestling/documentary">Documentaries</a>
+          </li>
+          <li>
+            <a href="/wrestling/ppv">PPVs</a>
+          </li>
+        </ul>
+      </div>
+      <div className="dropdown">
+        <label tabIndex={0} className="btn m-1">
+          Promotion
+        </label>
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <a href="/wrestling/nonwwe">Non WWE Content</a>
+          </li>
+          <li>
+            <a href="/wrestling/wwe">WWE Content</a>
+          </li>
+        </ul>
+      </div>
 
       <ul>
         {wrestling.map((film) => (
@@ -72,7 +100,7 @@ export async function getServerSideProps() {
     const wrestling = await db
       .collection("wrestling")
       .find({})
-      .sort({})
+      .sort({ promotion: 1, title: 1 })
       // .limit(20)
       .toArray();
 

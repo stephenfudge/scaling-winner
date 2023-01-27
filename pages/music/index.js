@@ -2,7 +2,6 @@ import clientPromise from "../../lib/mongodb";
 import Link from "next/link";
 
 export default function Music({ music }) {
- 
   return (
     <div>
       <h1>Music DVDs and BluRays</h1>
@@ -13,8 +12,8 @@ export default function Music({ music }) {
         <button className="btn">DVDs</button>
       </Link>
       <Link href="/music/add">
-    <button className="btn mx-2">Add To Music</button>
-  </Link>
+        <button className="btn mx-2">Add To Music</button>
+      </Link>
       <ul>
         {music.map((film) => (
           <li>
@@ -36,7 +35,7 @@ export async function getServerSideProps() {
     const music = await db
       .collection("music")
       .find({})
-      .sort({ artist: 1 })
+      .sort({ artist: 1, title: 1 })
       // .limit(20)
       .toArray();
 
