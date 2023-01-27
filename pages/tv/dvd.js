@@ -25,7 +25,7 @@ export async function getServerSideProps(){
         const tv = await db
             .collection("tv")
             .find({format: "DVD"})
-            .sort({})
+            .sort({title: 1, season: 1})
             .toArray();
 
         return {
