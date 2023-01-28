@@ -1,18 +1,41 @@
 import clientPromise from "../../lib/mongodb";
+import MusicHeader from "../components/music";
 
 export default function MusicDvd({ music }) {
   return (
     <div>
       <h1>Music DVDs</h1>
-           <ul>
-        {music.map((film) => (
-          <li>
-            <h2>{film.artist}</h2>
-            <h2>{film.title}</h2>
-            <h3>{film.format}</h3>
-          </li>
-        ))}
-      </ul>
+      <MusicHeader />
+      <div className="overflow-x-auto">
+        <table className="table table-compact w-full">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Artist</th>
+              <th>Title</th>
+              <th>Format</th>
+            </tr>
+          </thead>
+          <tbody>
+            {music.map((film) => (
+              <tr>
+                <th></th>
+                <td>{film.artist}</td>
+                <td>{film.title}</td>
+                <td>{film.format}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th>Artist</th>
+              <th>Title</th>
+              <th>Format</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
   );
 }
@@ -24,8 +47,8 @@ export async function getServerSideProps() {
 
     const music = await db
       .collection("music")
-      .find({ format: 'DVD'})
-      .sort({})
+      .find({ format: "DVD" })
+      .sort({ artist: 1, title: 1 })
       // .limit(20)
       .toArray();
 

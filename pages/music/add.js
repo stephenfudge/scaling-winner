@@ -40,7 +40,7 @@ const AddMusic = () => {
     <div>
       <h1>Add Music</h1>
       <form className="w-full max-w-sm" onSubmit={handleSubmit}>
-          {/* Artist */}
+        {/* Artist */}
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label

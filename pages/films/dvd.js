@@ -4,15 +4,7 @@ import FilmHeader from "../components/film";
 export default function FilmsDvd({ films }) {
   return (
     <div>
-       <h1>Feature Films DVDs</h1>
-      {/* <ul>
-        {films.map((film) => (
-          <li>
-            <h2>{film.title}</h2>
-            <h3>{film.format}</h3>
-          </li>
-        ))}
-      </ul> */}
+      <h1>Feature Films DVDs</h1>
       <FilmHeader />
       <div className="overflow-x-auto">
         <table className="table table-compact w-full">
@@ -53,7 +45,7 @@ export async function getServerSideProps() {
     const films = await db
       .collection("films")
       .find({ format: "DVD" })
-      .sort({ title: 1})
+      .sort({ title: 1 })
       // .limit(20)
       .toArray();
 

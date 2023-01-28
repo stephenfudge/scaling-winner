@@ -37,7 +37,6 @@ export default function AddFilm() {
     <div>
       <h1>Add Film</h1>
       <form className="w-full max-w-sm" onSubmit={handleSubmit}>
-      
         {/* Title */}
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">

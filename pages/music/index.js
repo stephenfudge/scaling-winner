@@ -1,28 +1,43 @@
 import clientPromise from "../../lib/mongodb";
 import Link from "next/link";
+import MusicHeader from "../components/music";
 
 export default function Music({ music }) {
   return (
     <div>
       <h1>Music DVDs and BluRays</h1>
-      <Link href="/music/brd">
-        <button className="btn mx-2">BluRays</button>
-      </Link>
-      <Link href="/music/dvd">
-        <button className="btn">DVDs</button>
-      </Link>
-      <Link href="/music/add">
-        <button className="btn mx-2">Add To Music</button>
-      </Link>
-      <ul>
-        {music.map((film) => (
-          <li>
-            <h2>{film.artist}</h2>
-            <h2>{film.title}</h2>
-            <h3>{film.format}</h3>
-          </li>
-        ))}
-      </ul>
+      <MusicHeader />
+
+      <div className="overflow-x-auto">
+        <table className="table table-compact w-full">
+          <thead className="text-secondary">
+            <tr>
+              <th></th>
+              <th>Artist</th>
+              <th>Title</th>
+              <th>Format</th>
+            </tr>
+          </thead>
+          <tbody>
+            {music.map((film) => (
+              <tr>
+                <th></th>
+                <td>{film.artist}</td>
+                <td>{film.title}</td>
+                <td>{film.format}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th>Artist</th>
+              <th>Title</th>
+              <th>Format</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
   );
 }
