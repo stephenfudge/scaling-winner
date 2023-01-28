@@ -5,16 +5,6 @@ export default function WrestlingPpv({ wrestling }) {
   return (
     <div>
       <h1>Professional Wrestling PPVs</h1>
-      {/* <ul>
-        {wrestling.map((film) => (
-          <li>
-            <h2>{film.promotion}</h2>
-            <h2>{film.title}</h2>
-            <h2>{film.presentation}</h2>
-            <h3>{film.format}</h3>
-          </li>
-        ))}
-      </ul> */}
       <WrestlingHeader />
       <div className="overflow-x-auto">
         <table className="table table-compact w-full">
@@ -35,7 +25,7 @@ export default function WrestlingPpv({ wrestling }) {
                 <td>{film.title}</td>
                 <td>{film.presentation}</td>
                 <td>{film.format}</td>
-                </tr>
+              </tr>
             ))}
           </tbody>
           <tfoot>
