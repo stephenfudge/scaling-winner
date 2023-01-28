@@ -1,5 +1,4 @@
 import clientPromise from "../../lib/mongodb";
-// import Link from "next/link";
 import WrestlingHeader from "../components/wrestling";
 
 export default function Wrestling({ wrestling }) {
@@ -8,16 +7,38 @@ export default function Wrestling({ wrestling }) {
       <h1>Professional Wrestling DVDs and BluRays</h1>
       <WrestlingHeader />
 
-      <ul>
-        {wrestling.map((film) => (
-          <li>
-            <h2>{film.promotion}</h2>
-            <h2>{film.title}</h2>
-            <h2>{film.presentation}</h2>
-            <h3>{film.format}</h3>
-          </li>
-        ))}
-      </ul>
+      {/* to have the background colour present remove the first table in classname */}
+      <table className="table table-compact w-full">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Promotion</th>
+            <th>Title</th>
+            <th>Presentation Style</th>
+            <th>Media Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          {wrestling.map((film) => (
+            <tr key={film.id}>
+              <th></th>
+              <td>{film.promotion}</td>
+              <td>{film.title}</td>
+              <td>{film.presentation}</td>
+              <td>{film.format}</td>
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th></th>
+            <th>Promotion</th>
+            <th>Title</th>
+            <th>Presentation Style</th>
+            <th>Media Format</th>
+          </tr>
+        </tfoot>
+      </table>
     </div>
   );
 }
