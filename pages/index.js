@@ -2,20 +2,13 @@ import Link from 'next/link'
 
 export default function Home(){
     return(
-        <div>
-            <h1>This is my movie collection</h1>
-            <Link href="/films">
-            <button>Feature Films</button>
-            </Link>
-            <Link href="/music">
-            <button>Music</button>
-            </Link>
-            <Link href="/tv">
-            <button>TV Shows</button>
-            </Link>
-            <Link href="/wrestling">
-            <button>Professional Wrestling</button>
-            </Link>
+        <div className='m-4 p-8 h-screen text-center'>
+          
+            <h1 className='text-center text-4xl underline underline-offset-4 tracking-wide p-2'>Welcome!</h1>
+            <p className='text-l p-9'>This website was created so that I could have an easy way to share my movie collection with friends to plan movie nights in a much easier manner.</p>
+            <p>I have broken it up into Feature Films, Music, TV and Professional Wrestling</p>
+            
+          
         </div>
     )
 }
