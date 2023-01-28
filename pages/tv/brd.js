@@ -40,7 +40,7 @@ export default function TvBrd({ tv }) {
           </table>
         ) : (
           <div>
-            <h3>Currently I do not own any TV shows on BluRay</h3>
+            <h3 className="text-xl">Currently I do not own any TV shows on BluRay</h3>
           </div>
         )}
       </div>
