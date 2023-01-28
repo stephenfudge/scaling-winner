@@ -1,41 +1,65 @@
 import clientPromise from "../../lib/mongodb";
-import Link from 'next/link';
+import Link from "next/link";
+import TvHeader from "../components/tv";
+import MusicHeader from "../components/music";
 
-export default function Tv ({ tv }) {
-    return (
-        <div>
-            <h1>Television DVDs and BluRays</h1>
-            <Link href='/tv/brd'><button className="btn mx-2">BluRays</button></Link>
-            <Link href='/tv/dvd'><button className="btn">DVDs</button></Link>
-            <ul>
-                {tv.map((film) => (
-                    <li>
-                        <h2>{film.title}</h2>
-                        <h2>{film.season}</h2>
-                        <h3>{film.format}</h3>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+export default function Tv({ tv }) {
+  return (
+    <div>
+      <h1>Television DVDs and BluRays</h1>
+      <TvHeader />
+
+      <div className="overflow-x-auto">
+        <table className="table table-compact w-full">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+
+              <th>Season</th>
+              <th>Media Format</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tv.map((film) => (
+              <tr>
+                <th></th>
+                <td>{film.title}</td>
+                <td>{film.season}</td>
+                <td>{film.format}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Season</th>
+              <th>Media Format</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 export async function getServerSideProps() {
-    try {
-        const client = await clientPromise;
-        const db = client.db("movies");
+  try {
+    const client = await clientPromise;
+    const db = client.db("movies");
 
-        const tv = await db
-            .collection("tv")
-            .find({})
-            .sort({title: 1, season: 1})
-            // .limit(20)
-            .toArray();
+    const tv = await db
+      .collection("tv")
+      .find({})
+      .sort({ title: 1, season: 1 })
+      // .limit(20)
+      .toArray();
 
-        return {
-            props: { tv: JSON.parse(JSON.stringify(tv)) },
-        };
-    } catch (e) {
-        console.error(e);
-    }
+    return {
+      props: { tv: JSON.parse(JSON.stringify(tv)) },
+    };
+  } catch (e) {
+    console.error(e);
+  }
 }

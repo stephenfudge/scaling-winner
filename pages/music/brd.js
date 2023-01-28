@@ -13,7 +13,7 @@ export default function MusicBrd({ music }) {
               <th></th>
               <th>Artist</th>
               <th>Title</th>
-              <th>Format</th>
+              <th>Media Format</th>
             </tr>
           </thead>
           <tbody>
@@ -31,7 +31,7 @@ export default function MusicBrd({ music }) {
               <th></th>
               <th>Artist</th>
               <th>Title</th>
-              <th>Format</th>
+              <th>Media Format</th>
             </tr>
           </tfoot>
         </table>
