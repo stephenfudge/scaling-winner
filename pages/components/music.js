@@ -10,6 +10,7 @@ export default function MusicHeader() {
       <a href="/music/add">
         <button className="btn mx-2">Add To Music</button>
       </a>
+      <a href="/music/pagi"><button className="btn mx-2">Pagination testing</button></a>
     </div>
   );
 }

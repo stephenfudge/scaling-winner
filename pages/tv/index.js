@@ -1,7 +1,5 @@
 import clientPromise from "../../lib/mongodb";
-import Link from "next/link";
 import TvHeader from "../components/tv";
-import MusicHeader from "../components/music";
 
 export default function Tv({ tv }) {
   return (

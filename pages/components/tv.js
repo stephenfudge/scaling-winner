@@ -7,6 +7,7 @@ export default function TvHeader() {
       <a href="/tv/dvd">
         <button className="btn">DVDs</button>
       </a>
+      <a href="/tv/pagi"><button className="btn">Pagination testing</button></a>
     </div>
   );
 }

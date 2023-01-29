@@ -1,5 +1,4 @@
 import clientPromise from "../../lib/mongodb";
-import Link from "next/link";
 import MusicHeader from "../components/music";
 
 export default function Music({ music }) {
