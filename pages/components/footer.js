@@ -2,10 +2,10 @@ export default function Footer(){
     return(
         <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
         <div className="grid grid-flow-col gap-4">
-          <a className="link link-hover">Feature Films</a> 
-          <a className="link link-hover">Music</a> 
-          <a className="link link-hover">TV</a> 
-          <a className="link link-hover">Professional Wrestling</a>
+          <a className="link link-hover" href="/films">Feature Films</a> 
+          <a className="link link-hover" href="/music">Music</a> 
+          <a className="link link-hover" href="/tv">TV</a> 
+          <a className="link link-hover" href="/wrestling">Professional Wrestling</a>
         </div> 
         <div>
           <div className="grid grid-flow-col gap-4">

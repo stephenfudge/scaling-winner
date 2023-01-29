@@ -8,6 +8,7 @@ export default function Wrestling({ wrestling }) {
       <WrestlingHeader />
 
       {/* to have the background colour present remove the first table in classname */}
+     <div className="overflow-x-auto">
       <table className="table table-compact w-full">
         <thead>
           <tr>
@@ -21,7 +22,7 @@ export default function Wrestling({ wrestling }) {
         <tbody>
           {wrestling.map((film) => (
             <tr key={film.id}>
-              <th></th>
+              <td></td>
               <td>{film.promotion}</td>
               <td>{film.title}</td>
               <td>{film.presentation}</td>
@@ -39,6 +40,7 @@ export default function Wrestling({ wrestling }) {
           </tr>
         </tfoot>
       </table>
+      </div>
     </div>
   );
 }
