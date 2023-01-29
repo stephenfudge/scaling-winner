@@ -1,6 +1,7 @@
 import clientPromise from "../../lib/mongodb";
 import { useState } from "react";
 import FilmHeader from "../components/film";
+import Pagination from "../components/Pagination";
 
 export default function Films({ films }) {
   const [page, setPage] = useState(1);
@@ -37,33 +38,14 @@ export default function Films({ films }) {
               </tr>
             ))}
           </tbody>
-          {/* <tfoot>
-            <tr>
-              <th></th>
-              <th>Title</th>
-              <th>Media Format</th>
-            </tr>
-          </tfoot> */}
         </table>
-      </div>
-      <div>
-        <button
-          className="btn btn-sm btn-secondary"
-          disabled={page === 1}
-          onClick={() => handlePageChange(page - 1)}
-        >
-          Previous
-        </button>
-        <span>
-          {page} of {totalPages}
-        </span>
-        <button
-          className="btn btn-sm btn-secondary"
-          disabled={page === totalPages}
-          onClick={() => handlePageChange(page + 1)}
-        >
-          Next
-        </button>
+        <div>
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            handlePageChange={handlePageChange}
+          />
+        </div>
       </div>
     </div>
   );
