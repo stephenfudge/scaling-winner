@@ -1,6 +1,4 @@
-// import React from "react";
-
-const Pagination = ({ page, totalPages, handlePageChange }) => {
+export default function Pagination ({ page, totalPages, handlePageChange }) {
   return (
     <div className="pagination">
       <button
@@ -21,5 +19,3 @@ const Pagination = ({ page, totalPages, handlePageChange }) => {
     </div>
   );
 };
-
-export default Pagination;
