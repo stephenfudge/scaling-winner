@@ -1,11 +1,25 @@
 import clientPromise from "../../lib/mongodb";
+import { useState } from "react";
 import MusicHeader from "../components/music";
+import Pagination from "../components/Pagination";
 
 export default function MusicDvd({ music }) {
+  const [page, setPage] = useState(1);
+  const limit = 18;
+  const totalPages = Math.ceil(music.length / limit);
+  const currentMusic = music.slice((page - 1) * limit, page * limit);
+
+  function handlePageChange(newPage) {
+    setPage(newPage);
+  }
+  
+
   return (
     <div>
-      <h1>Music DVDs</h1>
+      <div className="flex justify-center">
+      <h1 className="text-2xl px-5 py-3">Music DVDs</h1>
       <MusicHeader />
+      </div>
       <div className="overflow-x-auto">
         <table className="table table-compact w-full">
           <thead>
@@ -17,7 +31,7 @@ export default function MusicDvd({ music }) {
             </tr>
           </thead>
           <tbody>
-            {music.map((film) => (
+            {currentMusic.map((film) => (
               <tr>
                 <th></th>
                 <td>{film.artist}</td>
@@ -26,15 +40,14 @@ export default function MusicDvd({ music }) {
               </tr>
             ))}
           </tbody>
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>Artist</th>
-              <th>Title</th>
-              <th>Media Format</th>
-            </tr>
-          </tfoot>
         </table>
+      </div>
+      <div className="flex justify-center">
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          handlePageChange={handlePageChange}
+        />
       </div>
     </div>
   );
