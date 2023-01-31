@@ -32,7 +32,7 @@ export default function Pagination({ page, totalPages, handlePageChange }) {
     buttons.push(
       <button
         key={i}
-        className={`btn btn-xs sm:btn-sm md:btn-md lg:btn-lg ${i === page ? 'btn-accent' : 'btn-neutral'}`}
+        className={`btn btn-xs sm:btn-sm md:btn-md lg:btn-lg hover:btn-secondary  ${i === page ? 'btn-accent' : 'btn-neutral'}`}
         // disabled={i === 1 && page === 1 || i === totalPages && page === totalPages}
         onClick={() => handlePageChange(i)}
       >
