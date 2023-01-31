@@ -24,7 +24,9 @@ export default function AddFilm() {
         setTitle("");
         setFormat("");
         setError("");
-        setMessage("Media added successfully");
+        setMessage(
+          `Sucessfully added "${title}" in "${format}" format to the Feature Films database`
+        );
       } catch (errorMessage) {
         setError(errorMessage);
       }
@@ -97,6 +99,8 @@ export default function AddFilm() {
           </div>
         </div>
       </form>
+      {/* shows the message that is set in setMessage if the item is added into the database correctly */}
+      <div>{message && <p>{message}</p>}</div>
     </div>
   );
 }
