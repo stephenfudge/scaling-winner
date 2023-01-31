@@ -27,7 +27,7 @@ export default function AddTv() {
         setSeason();
         setFormat("");
         setError("");
-        setMessage("Media added successfully");
+        setMessage(`Successfully added season ${season} of "${title}" in the "${format}" format!`)
       } catch (errorMessage) {
         setError(errorMessage);
       }
@@ -123,6 +123,7 @@ export default function AddTv() {
           </div>
         </div>
       </form>
+      <div>{message && <p> {message}</p>}</div>
     </div>
   );
 }

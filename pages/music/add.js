@@ -27,7 +27,9 @@ const AddMusic = () => {
         setTitle("");
         setFormat("");
         setError("");
-        setMessage("Media added successfully");
+        setMessage(
+          `Sucessfully added "${title}" by ${artist} in the "${format}" format!`
+        );
       } catch (errorMessage) {
         setError(errorMessage);
       }
@@ -81,26 +83,6 @@ const AddMusic = () => {
             />
           </div>
         </div>
-        {/* Format */}
-
-        {/* Input Box */}
-        {/* <div className="md:flex md:items-center mb-6">
-
-            <div className="md:w-1/3">
-            <label htmlFor="format" className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">Format</label>
-                </div>
-                <div className="md:w-2/3">
-            <input
-            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-              type="text"
-              name="format"
-              value={format}
-              onChange={(e) => setFormat(e.target.value)}
-              />
-
-                </div>
-              </div> */}
-
         {/* Format Dropdown */}
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
@@ -140,6 +122,7 @@ const AddMusic = () => {
           </div>
         </div>
       </form>
+      <div>{message && <p>{message}</p>}</div>
     </div>
   );
 };
