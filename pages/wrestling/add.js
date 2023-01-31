@@ -29,7 +29,9 @@ export default function AddWrestling() {
         setPromotion("");
         setPresentation("");
         setFormat("");
-        setMessage("Media added successfully!");
+        setMessage(
+          `Successfully added "${title}", which is a ${presentation} for ${promotion} in the "${format}" format!`
+        );
       } catch (errorMessage) {
         setMessage(errorMessage);
       }
@@ -41,7 +43,7 @@ export default function AddWrestling() {
   return (
     <div>
       <h1 className="text-3xl font-bold">Add Wrestling</h1>
-      <form className="w-full max-w-sm" onSubmit={handleSubmit}> 
+      <form className="w-full max-w-sm" onSubmit={handleSubmit}>
         {/* Title */}
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
@@ -148,6 +150,8 @@ export default function AddWrestling() {
           </div>
         </div>
       </form>
+
+      <div>{message && <p>{message}</p>}</div>
     </div>
   );
 }
