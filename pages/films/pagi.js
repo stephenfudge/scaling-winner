@@ -18,8 +18,10 @@ export default function Films({ films }) {
 
   return (
     <div>
-      <h1>Feature Films</h1>
-      <FilmHeader />
+      <div className="flex justify-center">
+        <h1 className="text-3xl px-5 py-3">Feature Films</h1>
+        <FilmHeader />
+      </div>
       <div className="overflow-x-auto">
         <table className="table table-compact w-full">
           <thead>
@@ -39,7 +41,7 @@ export default function Films({ films }) {
             ))}
           </tbody>
         </table>
-        <div>
+        <div className="flex justify-center">
           <Pagination
             page={page}
             totalPages={totalPages}

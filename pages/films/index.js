@@ -1,11 +1,24 @@
 import clientPromise from "../../lib/mongodb";
+import { useState } from "react";
 import FilmHeader from "../components/film";
+import Pagination from "../components/Pagination";
 
 export default function Films({ films }) {
+  const [page, setPage] = useState(1);
+  const limit = 18;
+  const totalPages = Math.ceil(films.length / limit);
+  const currentFilms = films.slice((page - 1) * limit, page * limit);
+
+  function handlePageChange(newPage) {
+    setPage(newPage);
+  }
+
   return (
     <div>
-      <h1>Feature Films</h1>
-      <FilmHeader />
+      <div className="flex justify-center"> 
+        <h1 className="text-2xl px-5 py-3">Feature Films</h1>
+        <FilmHeader />
+      </div>
       <div className="overflow-x-auto">
         <table className="table table-compact w-full">
           <thead>
@@ -16,7 +29,7 @@ export default function Films({ films }) {
             </tr>
           </thead>
           <tbody>
-            {films.map((film) => (
+            {currentFilms.map((film) => (
               <tr key={film.id}>
                 <th></th>
                 <td>{film.title}</td>
@@ -24,14 +37,14 @@ export default function Films({ films }) {
               </tr>
             ))}
           </tbody>
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>Title</th>
-              <th>Media Format</th>
-            </tr>
-          </tfoot>
         </table>
+      </div>
+      <div className="flex justify-center">
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          handlePageChange={handlePageChange}
+        />
       </div>
     </div>
   );
