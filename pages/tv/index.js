@@ -1,12 +1,24 @@
 import clientPromise from "../../lib/mongodb";
+import { useState } from "react";
 import TvHeader from "../components/tv";
+import Pagination from "../components/Pagination";
 
 export default function Tv({ tv }) {
+  const [page, setPage] = useState(1);
+  const limit = 18;
+  const totalPages = Math.ceil(tv.length / limit);
+  const currentTv = tv.slice((page - 1) * limit, page * limit);
+
+  function handlePageChange(newPage) {
+    setPage(newPage);
+  }
+
   return (
     <div>
-      <h1>Television DVDs and BluRays</h1>
-      <TvHeader />
-
+      <div className="flex justify-center">
+        <h1 className="text-2xl px-5 py-3">Television DVDs and BluRays</h1>
+        <TvHeader />
+      </div>
       <div className="overflow-x-auto">
         <table className="table table-compact w-full">
           <thead>
@@ -19,7 +31,7 @@ export default function Tv({ tv }) {
             </tr>
           </thead>
           <tbody>
-            {tv.map((film) => (
+            {currentTv.map((film) => (
               <tr>
                 <th></th>
                 <td>{film.title}</td>
@@ -28,15 +40,14 @@ export default function Tv({ tv }) {
               </tr>
             ))}
           </tbody>
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>Title</th>
-              <th>Season</th>
-              <th>Media Format</th>
-            </tr>
-          </tfoot>
         </table>
+      </div>
+      <div className="flex justify-center">
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          handlePageChange={handlePageChange}
+        />
       </div>
     </div>
   );
@@ -51,7 +62,6 @@ export async function getServerSideProps() {
       .collection("tv")
       .find({})
       .sort({ title: 1, season: 1 })
-      // .limit(20)
       .toArray();
 
     return {
