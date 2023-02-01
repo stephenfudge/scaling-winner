@@ -47,7 +47,7 @@ export default function Wrestling({ wrestling }) {
         <Pagination
           page={page}
           totalPages={totalPages}
-          onPageChange={handlePageChange}
+          handlePageChange={handlePageChange}
         />
       </div>
     </div>
