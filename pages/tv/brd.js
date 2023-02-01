@@ -1,51 +1,31 @@
 import clientPromise from "../../lib/mongodb";
+import { useState } from "react";
 import TvHeader from "../components/tv";
+import Pagination from "../components/Pagination";
+import Table from "../components/tv-table";
 
-export default function TvBrd({ tv }) {
-  const title = "TV BluRays"
+export default function TvBrd({ brd }) {
+  const [page, setPage] = useState(1);
+  const limit = 18;
+  const totalPages = Math.ceil(brd.length / limit);
+  const currentTv = brd.slice((page - 1) * limit, page * limit);
+
+  const title = "TV BluRays";
+  const message = "Currently I do not own any TV shows on BluRay";
+
+  function handlePageChange(newPage) {
+    setPage(newPage);
+  }
+
   return (
     <div>
-      {/* <h1>TV BluRays</h1> */}
-      <TvHeader 
-      title={title}/>
-      <div className="overflow-x-auto">
-        {tv.length ? (
-          <table className="table table-compact w-full">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Title</th>
-                <th>Season</th>
-                <th>Media Format</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tv.map((film) => (
-                <tr>
-                  <th></th>
-
-                  <td>{film.title}</td>
-                  <td>{film.season}</td>
-                  <td>{film.format}</td>
-                </tr>
-              ))}
-            </tbody>
-            <tfoot>
-              <tr>
-                <th></th>
-                <th>Title</th>
-                <th>Season</th>
-
-                <th>Media Format</th>
-              </tr>
-            </tfoot>
-          </table>
-        ) : (
-          <div className="bgimage min-h-screen">
-            <h3 className="text-xl">Currently I do not own any TV shows on BluRay</h3>
-          </div>
-        )}
-      </div>
+      <TvHeader title={title} />
+      <Table currentTv={currentTv} message={message} />
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 }
@@ -62,7 +42,7 @@ export async function getServerSideProps() {
       .toArray();
 
     return {
-      props: { tv: JSON.parse(JSON.stringify(tv)) },
+      props: { brd: JSON.parse(JSON.stringify(tv)) },
     };
   } catch (e) {
     console.error(e);

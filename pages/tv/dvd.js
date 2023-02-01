@@ -1,51 +1,31 @@
 import clientPromise from "../../lib/mongodb";
+import { useState } from "react";
 import TvHeader from "../components/tv";
+import Pagination from "../components/Pagination";
+import Table from "../components/tv-table";
 
-export default function TvDvd({ tv }) {
+export default function TvDvd({ dvd }) {
+  const [page, setPage] = useState(1);
+  const limit = 18;
+  const totalPages = Math.ceil(dvd.length / limit);
+  const currentTv = dvd.slice((page - 1) * limit, page * limit);
 
-  const title ="TV DVDs"
-  
+  const title = "TV DVDs";
+  const message = "Currently I do not own any TV shows on DVD";
+
+  function handlePageChange(newPage) {
+    setPage(newPage);
+  }
+
   return (
     <div>
-      <TvHeader 
-      title={title}/>
-
-      <div className="overflow-x-auto">
-        {tv.length ? (
-        <table className="table table-compact w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Title</th>
-              <th>Season</th>
-              <th>Media Format</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tv.map((film) => (
-              <tr>
-                <th></th>
-                <td>{film.title}</td>
-                <td>{film.season}</td>
-                <td>{film.format}</td>
-              </tr>
-            ))}
-          </tbody>
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>Title</th>
-              <th>Season</th>
-              <th>Media Format</th>
-            </tr>
-          </tfoot>
-        </table>
-        ) : (
-            <div>
-                <h3>Currently I do not own any TV shows on DVD</h3>
-                </div>
-        )}
-      </div>
+      <TvHeader title={title} />
+      <Table currentTv={currentTv} message={message} />
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 }
@@ -62,7 +42,7 @@ export async function getServerSideProps() {
       .toArray();
 
     return {
-      props: { tv: JSON.parse(JSON.stringify(tv)) },
+      props: { dvd: JSON.parse(JSON.stringify(tv)) },
     };
   } catch (e) {
     console.error(e);

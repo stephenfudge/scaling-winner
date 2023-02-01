@@ -2,13 +2,15 @@ import clientPromise from "../../lib/mongodb";
 import { useState } from "react";
 import TvHeader from "../components/tv";
 import Pagination from "../components/Pagination";
+import Table from "../components/tv-table";
 
 export default function Tv({ tv }) {
   const [page, setPage] = useState(1);
   const limit = 18;
   const totalPages = Math.ceil(tv.length / limit);
   const currentTv = tv.slice((page - 1) * limit, page * limit);
-  const title = "Television DVDs and BluRays";
+  const title = "Television BluRays and DVDs";
+  const message = "Currently I do not own any TV shows on DVD or BluRay";
 
   function handlePageChange(newPage) {
     setPage(newPage);
@@ -17,36 +19,12 @@ export default function Tv({ tv }) {
   return (
     <div>
       <TvHeader title={title} />
-      <div className="overflow-x-auto">
-        <table className="table table-compact w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Title</th>
-
-              <th>Season</th>
-              <th>Media Format</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentTv.map((film) => (
-              <tr>
-                <th></th>
-                <td>{film.title}</td>
-                <td>{film.season}</td>
-                <td>{film.format}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="flex justify-center">
-        <Pagination
-          page={page}
-          totalPages={totalPages}
-          handlePageChange={handlePageChange}
-        />
-      </div>
+      <Table currentTv={currentTv} message={message} />
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 }
