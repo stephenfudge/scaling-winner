@@ -2,12 +2,14 @@ import clientPromise from "../../lib/mongodb";
 import { useState } from "react";
 import FilmHeader from "../components/film";
 import Pagination from "../components/Pagination";
+import Table from "../components/film-table";
 
-export default function FilmsDvd({ films }) {
+export default function FilmsDvd({ dvd }) {
   const [page, setPage] = useState(1);
   const limit = 18;
-  const totalPages = Math.ceil(films.length / limit);
-  const currentFilms = films.slice((page - 1) * limit, page * limit);
+  const totalPages = Math.ceil(dvd.length / limit);
+  const currentFilms = dvd.slice((page - 1) * limit, page * limit);
+  const title = "Feature Films DVDs";
 
   function handlePageChange(newPage) {
     setPage(newPage);
@@ -15,37 +17,13 @@ export default function FilmsDvd({ films }) {
 
   return (
     <div>
-      <div className="flex justify-center">
-        <h1 className="text-2xl px-5 py-3">Feature Films DVDs</h1>
-        <FilmHeader />
-      </div>
-      <div className="overflow-x-auto">
-        <table className="table table-compact w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Title</th>
-              <th>Media Format</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentFilms.map((film) => (
-              <tr key={film.id}>
-                <th></th>
-                <td>{film.title}</td>
-                <td>{film.format}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="flex justify-center">
-        <Pagination
-          page={page}
-          totalPages={totalPages}
-          handlePageChange={handlePageChange}
-        />
-      </div>
+      <FilmHeader title={title} />
+      <Table currentFilms={currentFilms} />
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 }
@@ -59,11 +37,10 @@ export async function getServerSideProps() {
       .collection("films")
       .find({ format: "DVD" })
       .sort({ title: 1 })
-      // .limit(20)
       .toArray();
 
     return {
-      props: { films: JSON.parse(JSON.stringify(films)) },
+      props: { dvd: JSON.parse(JSON.stringify(films)) },
     };
   } catch (e) {
     console.error(e);

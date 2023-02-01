@@ -2,12 +2,14 @@ import clientPromise from "../../lib/mongodb";
 import { useState } from "react";
 import FilmHeader from "../components/film";
 import Pagination from "../components/Pagination";
+import Table from "../components/film-table";
 
-export default function FilmsBrd({ films }) {
+export default function FilmsBrd({ brd }) {
   const [page, setPage] = useState(1);
   const limit = 18;
-  const totalPages = Math.ceil(films.length / limit);
-  const currentFilms = films.slice((page - 1) * limit, page * limit);
+  const totalPages = Math.ceil(brd.length / limit);
+  const currentFilms = brd.slice((page - 1) * limit, page * limit);
+  const title = "Feature Films BluRays";
 
   function handlePageChange(newPage) {
     setPage(newPage);
@@ -15,37 +17,13 @@ export default function FilmsBrd({ films }) {
 
   return (
     <div>
-      <div className="flex justify-center">
-        <h1 className="text-2xl px-5 py-3">Feature Films BluRays</h1>
-        <FilmHeader />
-      </div>
-      <div>
-        <table className="table table-compact w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Title</th>
-              <th>Media Format</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentFilms.map((film) => (
-              <tr key={film.id}>
-                <th></th>
-                <td>{film.title}</td>
-                <td>{film.format}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="flex justify-center">
-        <Pagination
-          page={page}
-          totalPages={totalPages}
-          handlePageChange={handlePageChange}
-        />
-      </div>
+      <FilmHeader title={title} />
+      <Table currentFilms={currentFilms} />
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 }
@@ -62,7 +40,7 @@ export async function getServerSideProps() {
       .toArray();
 
     return {
-      props: { films: JSON.parse(JSON.stringify(films)) },
+      props: { brd: JSON.parse(JSON.stringify(films)) },
     };
   } catch (e) {
     console.error(e);
