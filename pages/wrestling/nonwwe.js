@@ -2,6 +2,7 @@ import clientPromise from "../../lib/mongodb";
 import { useState } from "react";
 import WrestlingHeader from "../components/wrestling";
 import Pagination from "../components/Pagination";
+import Table from "../components/wrestling-table";
 
 export default function NonWWE({ nonwwe }) {
   const [page, setPage] = useState(1);
@@ -18,30 +19,7 @@ export default function NonWWE({ nonwwe }) {
   return (
     <div>
       <WrestlingHeader title={title} />
-      <div>
-        <table className="table table-compact w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Promotion</th>
-              <th>Title</th>
-              <th>Presentation Style</th>
-              <th>Media Format</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentWrestling.map((film) => (
-              <tr key={film.id}>
-                <th></th>
-                <th>{film.promotion}</th>
-                <td>{film.title}</td>
-                <td>{film.presentation}</td>
-                <td>{film.format}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <Table currentWrestling={currentWrestling} />
       <Pagination
         page={page}
         totalPages={totalPages}
