@@ -2,10 +2,12 @@ import clientPromise from "../../lib/mongodb";
 import TvHeader from "../components/tv";
 
 export default function TvBrd({ tv }) {
+  const title = "TV BluRays"
   return (
     <div>
-      <h1>TV BluRays</h1>
-      <TvHeader />
+      {/* <h1>TV BluRays</h1> */}
+      <TvHeader 
+      title={title}/>
       <div className="overflow-x-auto">
         {tv.length ? (
           <table className="table table-compact w-full">
@@ -39,7 +41,7 @@ export default function TvBrd({ tv }) {
             </tfoot>
           </table>
         ) : (
-          <div>
+          <div className="bgimage min-h-screen">
             <h3 className="text-xl">Currently I do not own any TV shows on BluRay</h3>
           </div>
         )}
