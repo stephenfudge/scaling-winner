@@ -8,6 +8,7 @@ export default function Tv({ tv }) {
   const limit = 18;
   const totalPages = Math.ceil(tv.length / limit);
   const currentTv = tv.slice((page - 1) * limit, page * limit);
+  const title = "Television DVDs and BluRays";
 
   function handlePageChange(newPage) {
     setPage(newPage);
@@ -15,10 +16,7 @@ export default function Tv({ tv }) {
 
   return (
     <div>
-      <div className="flex justify-center">
-        <h1 className="text-2xl px-5 py-3">Television DVDs and BluRays</h1>
-        <TvHeader />
-      </div>
+      <TvHeader title={title} />
       <div className="overflow-x-auto">
         <table className="table table-compact w-full">
           <thead>

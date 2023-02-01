@@ -2,10 +2,13 @@ import clientPromise from "../../lib/mongodb";
 import TvHeader from "../components/tv";
 
 export default function TvDvd({ tv }) {
+
+  const title ="TV DVDs"
+  
   return (
     <div>
-      <h1>TV DVDs</h1>
-      <TvHeader />
+      <TvHeader 
+      title={title}/>
 
       <div className="overflow-x-auto">
         {tv.length ? (
