@@ -1,21 +1,23 @@
 import clientPromise from "../../lib/mongodb";
+import { useState } from "react";
 import WrestlingHeader from "../components/wrestling";
+import Pagination from "../components/Pagination";
 
 export default function WWE({ wwe }) {
+  const [page, setPage] = useState(1);
+  const limit = 18;
+  const totalPages = Math.ceil(wwe.length / limit);
+  const currentWrestling = wwe.slice((page - 1) * limit, page * limit);
+
+  const title = "WWE DVDs and BluRays";
+
+  function handlePageChange(newPage) {
+    setPage(newPage);
+  }
+
   return (
     <div>
-      <h1>WWE DVDs and BluRays</h1>
-      {/* <ul>
-                {wwe.map((film) => (
-                    <li>
-                        <h2>{film.promotion}</h2>
-                        <h2>{film.title}</h2>
-                        <h2>{film.presentation}</h2>
-                        <h3>{film.format}</h3>
-                    </li>
-                ))}
-            </ul> */}
-      <WrestlingHeader />
+      <WrestlingHeader title={title} />
       <div>
         <table className="table table-compact w-full">
           <thead>
@@ -28,7 +30,7 @@ export default function WWE({ wwe }) {
             </tr>
           </thead>
           <tbody>
-            {wwe.map((film) => (
+            {currentWrestling.map((film) => (
               <tr key={film.id}>
                 <th></th>
                 <th>{film.promotion}</th>
@@ -38,17 +40,13 @@ export default function WWE({ wwe }) {
               </tr>
             ))}
           </tbody>
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>Promotion</th>
-              <th>Title</th>
-              <th>Presentation Style</th>
-              <th>Media Format</th>
-            </tr>
-          </tfoot>
         </table>
       </div>
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 }
@@ -61,7 +59,7 @@ export async function getServerSideProps() {
     const wwe = await db
       .collection("wrestling")
       .find({ promotion: "WWE" })
-      .sort({ title: 1})
+      .sort({ title: 1 })
       // .limit(20)
       .toArray();
 
