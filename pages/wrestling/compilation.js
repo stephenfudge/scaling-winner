@@ -2,13 +2,14 @@ import clientPromise from "../../lib/mongodb";
 import { useState } from "react";
 import WrestlingHeader from "../components/wrestling";
 import Pagination from "../components/Pagination";
+import Table from "../components/wrestling-table";
 
-export default function WrestlingCompilation({ wrestling }) {
+export default function WrestlingCompilation({ compilation }) {
   const [page, setPage] = useState(1);
   const limit = 18;
-  const totalPages = Math.ceil(wrestling.length / limit);
-  const currentWrestling = wrestling.slice((page - 1) * limit, page * limit);
-  const title ="Professional Wrestling Compilations"
+  const totalPages = Math.ceil(compilation.length / limit);
+  const currentWrestling = compilation.slice((page - 1) * limit, page * limit);
+  const title = "Professional Wrestling Compilations";
 
   function handlePageChange(newPage) {
     setPage(newPage);
@@ -16,37 +17,12 @@ export default function WrestlingCompilation({ wrestling }) {
 
   return (
     <div>
-     <WrestlingHeader 
-     title={title}/>
-      <div className="overflow-x-auto">
-        <table className="table table-compact w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Promotion</th>
-              <th>Title</th>
-              <th>Presentation Style</th>
-              <th>Media Format</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentWrestling.map((film) => (
-              <tr key={film.id}>
-                <th></th>
-                <td>{film.promotion}</td>
-                <td>{film.title}</td>
-                <th>{film.presentation}</th>
-                <td>{film.format}</td>
-              </tr>
-            ))}
-          </tbody>
-        
-        </table>
-      </div>
-      <Pagination 
-      page={page}
-      totalPages={totalPages}
-      handlePageChange={handlePageChange}
+      <WrestlingHeader title={title} />
+      <Table currentWrestling={currentWrestling} />
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
       />
     </div>
   );
@@ -64,7 +40,7 @@ export async function getServerSideProps() {
       .toArray();
 
     return {
-      props: { wrestling: JSON.parse(JSON.stringify(wrestling)) },
+      props: { compilation: JSON.parse(JSON.stringify(wrestling)) },
     };
   } catch (e) {
     console.error(e);
