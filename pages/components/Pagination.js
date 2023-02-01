@@ -22,7 +22,6 @@
 //   );
 // };
 
-
 // trying out to see which i like better
 
 // shows all pages as separate buttons in case you want to skip to a specific page
@@ -32,7 +31,9 @@ export default function Pagination({ page, totalPages, handlePageChange }) {
     buttons.push(
       <button
         key={i}
-        className={`btn btn-xs sm:btn-sm md:btn-md lg:btn-lg hover:btn-secondary  ${i === page ? 'btn-accent' : 'btn-neutral'}`}
+        className={`btn btn-xs sm:btn-sm md:btn-md lg:btn-lg hover:btn-secondary  ${
+          i === page ? "btn-accent" : "btn-neutral"
+        }`}
         // disabled={i === 1 && page === 1 || i === totalPages && page === totalPages}
         onClick={() => handlePageChange(i)}
       >
@@ -42,9 +43,8 @@ export default function Pagination({ page, totalPages, handlePageChange }) {
   }
 
   return (
-    <div className="pagination btn-group">
-      {buttons}
+    <div className="flex justify-center">
+      <div className="pagination btn-group">{buttons}</div>
     </div>
   );
 }
-

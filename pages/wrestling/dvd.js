@@ -11,8 +11,7 @@ export default function WrestlingDvD({ wrestling }) {
   const totalPages = Math.ceil(wrestling.length / limit);
   const currentWrestling = wrestling.slice((page - 1) * limit, page * limit);
 
-  console.log(wrestling.length + "total wrestling");
-  console.log(totalPages + " total pages");
+ const title = "Professional Wrestling DVDs"
 
   function handlePageChange(newPage) {
     setPage(newPage);
@@ -20,8 +19,8 @@ export default function WrestlingDvD({ wrestling }) {
 
   return (
     <div>
-      <h1>Professional Wrestling DVDs</h1>
-      <WrestlingHeader />
+            <WrestlingHeader 
+            title={title}/>
       <div className="overflow-x-auto">
         <table className="table table-compact w-full">
           <thead>
@@ -46,7 +45,7 @@ export default function WrestlingDvD({ wrestling }) {
           </tbody>
         </table>
       </div>
-      <div>
+      <div className="flex justify-center">
         <Pagination
           page={page}
           totalPages={totalPages}

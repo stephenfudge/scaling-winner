@@ -1,12 +1,23 @@
-import { fileURLToPath } from "url";
 import clientPromise from "../../lib/mongodb";
+import { useState } from "react";
 import WrestlingHeader from "../components/wrestling";
+import Pagination from "../components/Pagination";
 
 export default function WrestlingBrd({ wrestling }) {
+  const [page, setPage] = useState(1);
+  const limit = 18;
+  const totalPages = Math.ceil(wrestling.length / limit);
+  const currentWrestling = wrestling.slice((page - 1) * limit, page * limit);
+
+  const title = "Professional Wrestling BluRays";
+
+  function handlePageChange(newPage) {
+    setPage(newPage);
+  }
+
   return (
     <div>
-      <h1>Professional Wrestling BluRays</h1>
-      <WrestlingHeader />
+      <WrestlingHeader title={title} />
       {/* <ul>
                 {wrestling.map((film) => (
                     <li>
@@ -18,38 +29,34 @@ export default function WrestlingBrd({ wrestling }) {
                 ))}
             </ul> */}
       {/* <div className="overflow-x-auto"> */}
-        <table className="table table-compact w-full">
-          <thead>
-            <tr>
+      <table className="table table-compact w-full">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Promotion</th>
+            <th>Title</th>
+            <th>Presentation Style</th>
+            <th>Media Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          {wrestling.map((film) => (
+            <tr key={film.id}>
               <th></th>
-              <th>Promotion</th>
-              <th>Title</th>
-              <th>Presentation Style</th>
-              <th>Media Format</th>
+              <th>{film.promotion}</th>
+              <td>{film.title}</td>
+              <td>{film.presentation}</td>
+              <td>{film.format}</td>
             </tr>
-          </thead>
-          <tbody>
-            {wrestling.map((film) => (
-              <tr key={film.id}>
-                <th></th>
-                <th>{film.promotion}</th>
-                <td>{film.title}</td>
-                <td>{film.presentation}</td>
-                <td>{film.format}</td>
-              </tr>
-            ))}
-          </tbody>
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>Promotion</th>
-              <th>Title</th>
-              <th>Presentation Style</th>
-              <th>Media Format</th>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
+    </div>
     // </div>
   );
 }
@@ -62,7 +69,7 @@ export async function getServerSideProps() {
     const wrestling = await db
       .collection("wrestling")
       .find({ format: "BRD" })
-      .sort({promotion: 1, title: 1})
+      .sort({ promotion: 1, title: 1 })
       // .limit(20)
       .toArray();
 
