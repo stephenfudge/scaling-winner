@@ -10,7 +10,7 @@ export default function NonWWE({ nonwwe }) {
   const totalPages = Math.ceil(nonwwe.length / limit);
   const currentWrestling = nonwwe.slice((page - 1) * limit, page * limit);
 
-  const title = "Non WWE DVDs and BluRays";
+  const title = "Non WWE BluRays and DVDs";
 
   function handlePageChange(newPage) {
     setPage(newPage);

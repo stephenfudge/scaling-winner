@@ -10,7 +10,7 @@ export default function WrestlingPpv({ ppv }) {
   const totalPages = Math.ceil(ppv.length / limit);
   const currentWrestling = ppv.slice((page - 1) * limit, page * limit);
 
-  const title = "Professional Wrestling PPVs";
+  const title = "Professional Wrestling Pay Per Views";
 
   function handlePageChange(newPage) {
     setPage(newPage);

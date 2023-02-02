@@ -10,7 +10,7 @@ export default function WWE({ wwe }) {
   const totalPages = Math.ceil(wwe.length / limit);
   const currentWrestling = wwe.slice((page - 1) * limit, page * limit);
 
-  const title = "WWE DVDs and BluRays";
+  const title = "WWE BluRays and DVDs";
 
   function handlePageChange(newPage) {
     setPage(newPage);
@@ -38,7 +38,6 @@ export async function getServerSideProps() {
       .collection("wrestling")
       .find({ promotion: "WWE" })
       .sort({ title: 1 })
-      // .limit(20)
       .toArray();
 
     return {

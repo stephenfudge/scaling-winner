@@ -9,7 +9,7 @@ export default function Wrestling({ wrestling }) {
   const limit = 18;
   const totalPages = Math.ceil(wrestling.length / limit);
   const currentWrestling = wrestling.slice((page - 1) * limit, page * limit);
-  const title = "Professional Wrestling DVDs and BluRays";
+  const title = "Professional Wrestling BluRays and DVDs";
 
   function handlePageChange(newPage) {
     setPage(newPage);
@@ -39,7 +39,6 @@ export async function getServerSideProps() {
       .collection("wrestling")
       .find({})
       .sort({ promotion: 1, title: 1 })
-      // .limit(20)
       .toArray();
 
     return {
