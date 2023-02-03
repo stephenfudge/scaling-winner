@@ -5,10 +5,18 @@ import "../styles/globals.css";
 
 export default function App({ Component, pageProps }) {
   return (
-    <div className="backing">
-      <Navbar />
+    <div className="backing flex flex-col min-h-screen">
+     <header>
+     <Navbar />
+      </header> 
+      <main className="flex-grow">
       <Component {...pageProps} />
+
+      </main>
+      <footer>
+
       <Footer />
+      </footer>
     </div>
   );
 }
