@@ -1,7 +1,7 @@
 export default function MusicTable({ currentMusic }) {
   return (
     <div className="overflow-x-auto">
-      <table className="table table-compact w-full">
+      <table className="table table-compact table-zebra w-full">
         <thead className="text-secondary">
           <tr>
             <th></th>

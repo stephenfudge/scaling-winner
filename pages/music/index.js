@@ -6,7 +6,7 @@ import Table from "../components/music-table";
 
 export default function Music({ music }) {
   const [page, setPage] = useState(1);
-  const limit = 18;
+  const limit = 19;
   const totalPages = Math.ceil(music.length / limit);
   const currentMusic = music.slice((page - 1) * limit, page * limit);
   const title = "Music BluRays and DVDs";
