@@ -16,7 +16,7 @@ export default function Pagination({ page, totalPages, handlePageChange }) {
   }
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mb-0 pt-4 ">
       <div className="pagination btn-group">{buttons}</div>
     </div>
   );
