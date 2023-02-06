@@ -1,8 +1,8 @@
 import clientPromise from "../../lib/mongodb";
 import { useState } from "react";
-import TvHeader from "../components/tv";
-import Pagination from "../components/Pagination";
-import Table from "../components/tv-table";
+import TvHeader from "../../components/tv";
+import Pagination from "../../components/Pagination";
+import Table from "../../components/tv-table";
 
 export default function TvBrd({ brd }) {
   const [page, setPage] = useState(1);

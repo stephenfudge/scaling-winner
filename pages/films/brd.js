@@ -1,8 +1,8 @@
 import clientPromise from "../../lib/mongodb";
 import { useState } from "react";
-import FilmHeader from "../components/film";
-import Pagination from "../components/Pagination";
-import Table from "../components/film-table";
+import FilmHeader from "../../components/film";
+import Pagination from "../../components/Pagination";
+import Table from "../../components/film-table";
 
 export default function FilmsBrd({ brd }) {
   const [page, setPage] = useState(1);

@@ -1,9 +1,9 @@
 // importing things
 import clientPromise from "../../lib/mongodb";
 import { useState } from "react";
-import WrestlingHeader from "../components/wrestling";
-import Pagination from "../components/Pagination";
-import Table from "../components/wrestling-table";
+import WrestlingHeader from "../../components/wrestling";
+import Pagination from "../../components/Pagination";
+import Table from "../../components/wrestling-table";
 
 // wrestling dvd page
 export default function WrestlingDvD({ dvd }) {

@@ -1,8 +1,8 @@
 import clientPromise from "../../lib/mongodb";
 import { useState } from "react";
-import MusicHeader from "../components/music";
-import Pagination from "../components/Pagination";
-import Table from "../components/music-table";
+import MusicHeader from "../../components/music";
+import Pagination from "../../components/Pagination";
+import Table from "../../components/music-table";
 
 export default function Music({ music }) {
   const [page, setPage] = useState(1);
