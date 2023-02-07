@@ -8,9 +8,6 @@ export default function MusicHeader({title}) {
       <a href="/music/dvd">
         <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-md mx-2 my-2">DVDs</button>
       </a>
-      <a href="/music/add">
-        <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-md mx-2 my-2">Add To Music</button>
-      </a>
     </div>
   );
 }

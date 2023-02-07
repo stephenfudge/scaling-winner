@@ -1,8 +1,17 @@
 export default function TvTable({ currentTv, message }) {
+    let style = "";
+
+    if(currentTv.length < 10 ){
+      style = "table table-compact w-full lessthan"
+    }else{
+      style = "table table-compact w-full"
+    }
+
+
   return (
     <div className="overflow-x-auto">
       {currentTv.length ? (
-        <table className="table table-compact w-full">
+        <table className={`${style}`}>
           <thead>
             <tr>
               <th></th>

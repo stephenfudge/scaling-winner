@@ -14,8 +14,8 @@ export default function WrestlingTable({currentWrestling}){
             <tbody>
             {currentWrestling.map((film) => (
                 <tr key={film.id}>
-                <th></th>
-                <th>{film.promotion}</th>
+                    <th></th>
+                <td>{film.promotion}</td>
                 <td>{film.title}</td>
                 <td>{film.presentation}</td>
                 <td>{film.format}</td>
