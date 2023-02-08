@@ -1,9 +1,9 @@
 export default function WrestlingHeader({title}) {
   return (
     <div className="flex justify-center">
-      <h1 className="text-sm sm:text-base md:text-lg lg:text-2xl px-5 py-3">{title}</h1>
+      <h1 className="text-sm md:text-lg lg:text-2xl px-5 py-3 max-lg:hidden">{title}</h1>
       <div className="dropdown">
-        <label tabIndex={0} className="btn m-1">
+        <label tabIndex={0} className="btn btn-xs sm:btn-sm md:btn-md lg:btn-md m-1">
           Media Format
         </label>
         <ul
@@ -19,7 +19,7 @@ export default function WrestlingHeader({title}) {
         </ul>
       </div>
       <div className="dropdown">
-        <label tabIndex={0} className="btn m-1">
+        <label tabIndex={0} className="btn btn-xs sm:btn-sm md:btn-md lg:btn-md m-1">
           Presentation Style
         </label>
         <ul
@@ -38,7 +38,7 @@ export default function WrestlingHeader({title}) {
         </ul>
       </div>
       <div className="dropdown">
-        <label tabIndex={0} className="btn m-1">
+        <label tabIndex={0} className="btn btn-xs sm:btn-sm md:btn-md lg:btn-md m-1">
           Promotion
         </label>
         <ul
