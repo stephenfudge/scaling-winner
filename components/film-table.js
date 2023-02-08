@@ -1,7 +1,15 @@
 export default function FilmsTable({ currentFilms }) {
+  let style = "";
+
+  if (currentFilms.length < 10) {
+    style = "table table-compact table-zebra w-full lessthan";
+  } else {
+    style = "table table-compact table-zebra w-full";
+  };
+
   return (
     <div className="overflow-x-auto">
-      <table className="table table-compact w-full">
+      <table className={`${style}`}>
         <thead>
           <tr>
             <th></th>

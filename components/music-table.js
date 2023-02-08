@@ -1,13 +1,11 @@
 export default function MusicTable({ currentMusic }) {
-    const variable1 = currentMusic.length;
-    console.log(variable1);
-    let style = "";
+  let style = "";
 
-    if (currentMusic.length < 10){
-     style = "table table-compact table-zebra w-full lessthan"
-    }else{
-      style = "table table-compact table-zebra w-full"
-    }
+  if (currentMusic.length < 10) {
+    style = "table table-compact table-zebra w-full lessthan";
+  } else {
+    style = "table table-compact table-zebra w-full";
+  }
 
   return (
     <div className="overflow-x-auto">

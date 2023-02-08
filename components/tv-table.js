@@ -2,9 +2,9 @@ export default function TvTable({ currentTv, message }) {
     let style = "";
 
     if(currentTv.length < 10 ){
-      style = "table table-compact w-full lessthan"
+      style = "table table-compact table-zebra w-full lessthan"
     }else{
-      style = "table table-compact w-full"
+      style = "table table-compact table-zebra w-full"
     }
 
 
