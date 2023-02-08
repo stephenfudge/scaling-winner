@@ -2,13 +2,13 @@ export default function WrestlingTable({ currentWrestling }) {
   let style = "";
 
   if (currentWrestling.length < 10) {
-    style = "table table-compact table-zebra w-full lessthan";
+    style = "table table-compact table-zebra w-full table-auto lessthan";
   } else {
-    style = "table table-compact table-zebra w-full";
+    style = "table table-compact table-zebra w-full table-auto ";
   };
 
   return (
-    <div>
+    <div >
       <table className={`${style}`}>
         <thead>
           <tr>

@@ -25,9 +25,6 @@ export default function Navbar(){
       <li><a href='/wrestling' className="btn btn-outline btn-secondary mx-2">Wrestling</a></li>
     </ul>
   </div>
-  {/* <div className="navbar-end">
-    <a className="btn">Get started</a>
-  </div> */}
 </div>
     )
 }
