@@ -15,7 +15,7 @@ export default function MusicTable({ currentMusic }) {
             <th></th>
             <th>Artist</th>
             <th>Title</th>
-            <th>Media Format</th>
+            <th className="max-md:hidden">Media Format</th>
           </tr>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@ export default function MusicTable({ currentMusic }) {
               <th></th>
               <td>{film.artist}</td>
               <td>{film.title}</td>
-              <td>{film.format}</td>
+              <td className="max-md:hidden">{film.format}</td>
             </tr>
           ))}
         </tbody>
