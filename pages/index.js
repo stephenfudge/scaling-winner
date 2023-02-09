@@ -1,11 +1,12 @@
 
 export default function Home(){
     return(
-        <div className='m-4 p-8 h-screen text-center bgimage'>
+        <div className='m-4 p-8 h-screen text-center bgimage text-white font-normal text-lg'>
           
-            <h1 className='text-center text-4xl underline underline-offset-4 tracking-wide p-2 text-black'>Welcome!</h1>
-            <p className='text-l p-9 text-black'>This website was created so that I could have an easy way to share my movie collection with friends to plan movie nights in a much easier manner.</p>
-            <p>I have broken it up into Feature Films, Music, TV and Professional Wrestling</p>
+            <h1 className='text-center text-4xl underline underline-offset-4 tracking-wide p-2 font-bold'>Welcome!</h1>
+            <p className='pt-9'>This website was created so that I could have an easy way </p>
+         <p>  to share my movie collection with friends to plan movie nights</p>
+            <p className="pt-4">I have broken it into 4 sections</p>
             
           
         </div>

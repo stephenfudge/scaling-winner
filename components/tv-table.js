@@ -33,7 +33,7 @@ export default function TvTable({ currentTv, message }) {
         </table>
       ) : (
         <div className="flex justify-center bgimage min-h-screen">
-          <h3 className="text-xl text-black p-10 mx-10">{message}</h3>
+          <h3 className="text-xl text-white pt-40 mx-10 font-bold">{message}</h3>
         </div>
       )}
     </div>
