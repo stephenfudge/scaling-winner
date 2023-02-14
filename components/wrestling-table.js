@@ -15,7 +15,7 @@ export default function WrestlingTable({ currentWrestling }) {
             <th></th>
             <th>Promotion</th>
             <th>Title</th>
-            <th className="max-md:hidden sm:hidden">Presentation Style</th>
+            <th className="max-md:hidden" >Presentation Style</th>
             <th className="max-md:hidden">Media Format</th>
           </tr>
         </thead>
@@ -25,7 +25,7 @@ export default function WrestlingTable({ currentWrestling }) {
               <th></th>
               <td>{film.promotion}</td>
               <td>{film.title}</td>
-              <td className="max-md:hidden sm:hidden">{film.presentation}</td>
+              <td className="max-md:hidden">{film.presentation}</td>
               <td className="max-md:hidden">{film.format}</td>
             </tr>
           ))}

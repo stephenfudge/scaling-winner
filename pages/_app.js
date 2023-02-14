@@ -6,17 +6,17 @@ import "../styles/globals.css";
 export default function App({ Component, pageProps }) {
   return (
     <div className="backing flex flex-col min-h-screen">
-     <header>
+     {/* <header> */}
      <Navbar />
-      </header> 
-      <main className="flex-grow">
+      {/* </header>  */}
+      {/* <main className="flex-grow"> */}
       <Component {...pageProps} />
 
-      </main>
-      <footer>
+      {/* </main> */}
+      {/* <footer> */}
 
       <Footer />
-      </footer>
+      {/* </footer> */}
     </div>
   );
 }
