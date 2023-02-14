@@ -11,7 +11,9 @@ background: linear-gradient(0deg, rgba(34,72,195,1) 0%, rgba(253,45,217,1) 100%)
 
 /* background image */
 .bgimage{
-    background-image: url('../images/movies.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.5)),
+    url('../images//movies.png');
     background-size: cover;
     opacity: 80%;
 }
