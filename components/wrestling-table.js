@@ -2,9 +2,9 @@ export default function WrestlingTable({ currentWrestling }) {
   let style = "";
 
   if (currentWrestling.length < 10) {
-    style = "table table-compact table-zebra w-full table-auto lessthan";
+    style = "table table-compact table-zebra w-full table-auto lessthan"
   } else {
-    style = "table table-compact table-zebra w-full table-auto ";
+    style = "table table-compact table-zebra w-full table-auto"
   };
 
   return (

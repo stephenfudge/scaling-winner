@@ -37,7 +37,11 @@ export async function getServerSideProps() {
     const wrestling = await db
       .collection("wrestling")
       .find({ presentation: "PPV" })
-      .sort({})
+      .sort({ title: 1})
+      .collation({
+        locale: "en_US",
+        numericOrdering: true
+      })
       .toArray();
 
     return {

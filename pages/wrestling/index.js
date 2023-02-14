@@ -39,6 +39,10 @@ export async function getServerSideProps() {
       .collection("wrestling")
       .find({})
       .sort({ promotion: 1, title: 1 })
+      .collation({
+        locale: "en_US",
+        numericOrdering: true
+      })
       .toArray();
 
     return {
