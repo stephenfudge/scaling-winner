@@ -18,6 +18,8 @@ export default async function handler(req, res) {
   }
 
   const { username, password } = req.body;
+  console.log("user:", user);
+  console.log("password:", password);
 
   if (!username || !password) {
     return res
@@ -28,12 +30,14 @@ export default async function handler(req, res) {
   const client = await clientPromise;
   const users = client.db("movies").collection("user");
   const user = await users.findOne({ username });
+  console.log("user2:", user)
 
   if (!user) {
     return res.status(401).json({ message: "Invalid username or password" });
   }
   const passwordMatch = await bcrypt.compare(password, user.password);
 
+  console.log("passmatch:", passwordMatch)
   if (!passwordMatch) {
     // Update password if it's not already hashed
     const isPasswordHashed = await bcrypt.compare(password, user.password);
