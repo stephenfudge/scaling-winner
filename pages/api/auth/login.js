@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
 import clientPromise from "../../../lib/mongodb";
 
 // if i create a new user this will hash the password the first time i try to login then i should be able to login without issue
@@ -11,6 +12,8 @@ import clientPromise from "../../../lib/mongodb";
 //   const result = await users.updateOne({ username }, { $set: { password: hashedPassword } });
 //   return result.modifiedCount;
 // }
+
+dotenv.config();
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
