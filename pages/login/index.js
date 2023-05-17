@@ -14,7 +14,7 @@ export default function LoginPage() {
     try {
       const response = await axios.post("/api/auth/login", { username, password });
       localStorage.setItem("token", response.data.token);
-      router.push("/");
+      router.push("/loggedin");
     } catch (error) {
       setError("Invalid username or password");
     }

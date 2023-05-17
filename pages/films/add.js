@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from '../../hooks/useAuth';
+import { useRouter } from 'next/router';
 
 export default function AddFilm() {
+  const { user } = useAuth();
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [format, setFormat] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState("");
+
+  useEffect(() => {
+    if (!user) {
+      setShowMessage(true);
+      const timeout = setTimeout(() => {
+        router.push("/");
+      }, 5000);
+      return () => clearTimeout(timeout);
+    }
+  })
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +52,12 @@ export default function AddFilm() {
 
   return (
     <div>
+      {!user && showMessage && (
+        <p>You do not have access to this page as you are not logged in</p>
+      )}
+      {user && (
+        <>
+        
       <h1>Add Film</h1>
       <form className="w-full max-w-sm" onSubmit={handleSubmit}>
         {/* Title */}
@@ -101,6 +122,8 @@ export default function AddFilm() {
       </form>
       {/* shows the message that is set in setMessage if the item is added into the database correctly */}
       <div>{message && <p>{message}</p>}</div>
+      </>
+      )}
     </div>
   );
 }
