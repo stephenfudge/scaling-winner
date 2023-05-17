@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   }
 
   const { username, password } = req.body;
-  console.log("user:", user);
+  console.log("user:", username);
   console.log("password:", password);
 
   if (!username || !password) {
