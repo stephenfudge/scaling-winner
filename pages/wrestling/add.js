@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { useRouter } from "next/router";
+import NotLoggedIn from "../../components/notLoggedIn";
 import LoggedInHeader from "../../components/loggedinHeader";
 
 export default function AddWrestling() {
   const { user } = useAuth();
-  const router = useRouter();
   const [title, setTitle] = useState("");
   const [promotion, setPromotion] = useState("");
   const [presentation, setPresentation] = useState("");
@@ -17,10 +16,6 @@ export default function AddWrestling() {
   useEffect(() => {
     if (!user) {
       setShowMessage(true);
-      const timeout = setTimeout(() => {
-        router.push("/");
-      }, 5000);
-      return () => clearTimeout(timeout);
     }
   });
 
@@ -28,7 +23,7 @@ export default function AddWrestling() {
     e.preventDefault();
     if (title && presentation && promotion && format) {
       try {
-        let response = await fetch("/api/addWrestling", {
+        let response = await fetch("/api/wrestling/addWrestling", {
           method: "POST",
           body: JSON.stringify({
             title,
@@ -58,9 +53,7 @@ export default function AddWrestling() {
 
   return (
     <div>
-      {!user && showMessage && (
-        <p>You do not have access to this page as you are not logged in</p>
-      )}
+      {!user && showMessage && <NotLoggedIn />}
       {user && (
         <>
           <LoggedInHeader />
