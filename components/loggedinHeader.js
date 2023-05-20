@@ -1,7 +1,7 @@
 import { useAuth } from "../hooks/useAuth";
 
 export default function LoggedInHeader() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const capitalizeFirstLetter = (string) => {
     if (!string) return "";
@@ -87,6 +87,7 @@ export default function LoggedInHeader() {
           </li>
         </ul>
       </div>
+      <btn className="btn btn-outline btn-xs sm:btn-sm md:btn-md lg:btn-md m-1" onClick={logout} >Logout</btn>
     </div>
   );
 }
