@@ -1,24 +1,20 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { useRouter } from "next/router";
+import NotLoggedIn from "../../components/notLoggedIn";
 import LoggedInHeader from "../../components/loggedinHeader";
 
 export default function AddFilm() {
   const { user } = useAuth();
-  const router = useRouter();
   const [title, setTitle] = useState("");
   const [format, setFormat] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
 
+
   useEffect(() => {
     if (!user) {
       setShowMessage(true);
-      const timeout = setTimeout(() => {
-        router.push("/");
-      }, 5000);
-      return () => clearTimeout(timeout);
     }
   });
 
@@ -26,7 +22,7 @@ export default function AddFilm() {
     e.preventDefault();
     if (title && format) {
       try {
-        let response = await fetch("/api/addFilm", {
+        let response = await fetch("/api/films/addFilm", {
           method: "POST",
           body: JSON.stringify({
             title,
@@ -53,12 +49,10 @@ export default function AddFilm() {
 
   return (
     <div>
-      {!user && showMessage && (
-        <p>You do not have access to this page as you are not logged in</p>
-      )}
+      {!user && showMessage && <NotLoggedIn />}
       {user && (
         <>
-        <LoggedInHeader />
+          <LoggedInHeader />
           <h1>Add Film</h1>
           <form className="w-full max-w-sm" onSubmit={handleSubmit}>
             {/* Title */}
