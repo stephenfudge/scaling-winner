@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { useRouter } from "next/router";
+import NotLoggedIn from "../../components/notLoggedIn";
 import LoggedInHeader from "../../components/loggedinHeader";
 
 export default function AddTv() {
   const { user } = useAuth();
-  const router = useRouter();
   const [title, setTitle] = useState("");
   const [season, setSeason] = useState();
   const [format, setFormat] = useState("");
@@ -16,10 +15,6 @@ export default function AddTv() {
   useEffect(() => {
     if (!user) {
       setShowMessage(true);
-      const timeout = setTimeout(() => {
-        router.push("/");
-      }, 5000);
-      return () => clearTimeout(timeout);
     }
   });
 
@@ -27,7 +22,7 @@ export default function AddTv() {
     e.preventDefault();
     if (title && season && format) {
       try {
-        let response = await fetch("/api/addTv", {
+        let response = await fetch("/api/tv/addTv", {
           method: "POST",
           body: JSON.stringify({
             title,
@@ -56,9 +51,7 @@ export default function AddTv() {
 
   return (
     <div>
-      {!user && showMessage && (
-        <p>You do not have access to this page as you are not logged in</p>
-      )}
+      {!user && showMessage && <NotLoggedIn />}
       {user && (
         <>
           <LoggedInHeader />
