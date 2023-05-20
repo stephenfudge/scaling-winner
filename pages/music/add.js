@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { useRouter } from "next/router";
+import NotLoggedIn from "../../components/notLoggedIn";
 import LoggedInHeader from "../../components/loggedinHeader";
 
 export default function AddMusic() {
   const { user } = useAuth();
-  const router = useRouter();
   const [artist, setArtist] = useState("");
   const [title, setTitle] = useState("");
   const [format, setFormat] = useState("");
@@ -16,10 +15,6 @@ export default function AddMusic() {
   useEffect(() => {
     if (!user) {
       setShowMessage(true);
-      const timeout = setTimeout(() => {
-        router.push("/");
-      }, 5000);
-      return () => clearTimeout(timeout);
     }
   });
 
@@ -27,7 +22,7 @@ export default function AddMusic() {
     e.preventDefault();
     if (artist && title && format) {
       try {
-        let response = await fetch("/api/addMusic", {
+        let response = await fetch("/api/music/addMusic", {
           method: "POST",
           body: JSON.stringify({
             artist,
@@ -56,12 +51,10 @@ export default function AddMusic() {
 
   return (
     <div>
-      {!user && showMessage && (
-        <p>You do not have access to this page as you are not logged in</p>
-      )}
+      {!user && showMessage && <NotLoggedIn />}
       {user && (
         <>
-        <LoggedInHeader />
+          <LoggedInHeader />
           <h1>Add Music</h1>
           <form className="w-full max-w-sm" onSubmit={handleSubmit}>
             {/* Artist */}
