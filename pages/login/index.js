@@ -28,7 +28,7 @@ export default function LoginPage() {
       <div className="pt-3 flex flex-col justify-center px-6 lg:px-8 text-center">
         <h1>Login Below</h1>
 
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md dark:bg-gray-900">
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="py-8 px-6 shadow rounded-lg sm:px-10">
             <form className="mb-0 space-y-6" onSubmit={handleSubmit}>
               {/* Name section required */}
@@ -43,7 +43,7 @@ export default function LoginPage() {
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="Username"
                     required
-                    className="w-full border border-purple dark:border-lightpink px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-lightpurple focus:ring-1 focus:ring-lightpurple"
+                    className="w-full border px-3 py-2 rounded-lg shadow-sm focus:ring-1"
                   />
                 </div>
               </div>
@@ -59,7 +59,7 @@ export default function LoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
                     required
-                    className="w-full border border-purple dark:border-lightpink px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-lightpurple focus:ring-1 focus:ring-lightpurple"
+                    className="w-full border px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-1"
                   />
                 </div>
               </div>
@@ -72,7 +72,6 @@ export default function LoginPage() {
                 >
                   Login
                 </button>
-                {/* <button type="submit">Login</button> */}
               </div>
             </form>
           </div>
