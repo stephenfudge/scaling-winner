@@ -1,22 +1,41 @@
-# scaling-winner
+# Movie Database for Date Night 
 
-A NextJS app using MongoDB 
+This is a full stack web application built with Next.js, MongoDB, Tailwind CSS and daisyUI. It allows users to browse a database of movies, TV shows, music, and wrestling content to choose what to watch for date night. Admin users can log in to add, edit or delete entries in the database.
 
-## Movie Database
+## Table of Contents 
 
-- *What was your motivation?*  To make planning movie nights easier
-- *What problem does it solve?*  Trying to list every movie somebody might be interested in watching when trying to figure out what we want to watch
+* [Features](#features)
+* [Screenshot](#screenshot)  
+* [Live Demo](#live-demo)
+* [Contributing](#contributing)
+* [About the Author](#about-the-author)
+* [License](#license)
+
+## Features
+
+* Explore an extensive database of movies, TV shows, music, and wrestling content
+* Refine your search by applying category and format type filters
+* Further narrow down wrestling content by selecting specific promotions and presentation styles
+* Utilize administrative access to manage database entries, including adding, editing, or deleting records
+* Experience seamless navigation with a mobile-first responsive design
 
 
-## Usage
+## Screenshot
 
-Go to https://scaling-winner.vercel.app/ and the page should load and the user can navigate through categories and sub-categories. 
+![App Screenshot](images//screenshot.png)  
 
+## Live Demo
 
-Below is a screenshot of what the site should look like once you've gotten to the Note Taker. 
+[Movie Database](https://scaling-winner.vercel.app/)   
 
-![alt text](images//screenshot.png)
+## Contributing
 
+Contributions are welcome! Please open an issue or pull request with your feedback and suggestions.  
 
-## Credits
-I used next.js documentation on how to write API calls in Next.JS to call from a MongoDB. I used Vercel documentation on how to deploy to vercel
+## About the Author
+
+This project was created by Stephen Fudge to demonstrate full stack web development skills.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
