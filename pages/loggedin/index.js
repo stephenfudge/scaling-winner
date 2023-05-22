@@ -5,7 +5,7 @@ export default function LoggedIn() {
       <LoggedInHeader />
       <div className="flex justify-center py-6 text-center">
         <div>
-          <h1 className="py-3">Logged In</h1>
+          <h3 className="text-lg py-3">You have successfully logged in!</h3>
           <p>Click on the header to select what you would like to do</p>
         </div>
       </div>

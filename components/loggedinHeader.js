@@ -10,7 +10,7 @@ export default function LoggedInHeader() {
 
   return (
     <div className="flex justify-center">
-      <h1 className="text-sm md:text-lg lg:text-2xl px-5 py-3 max-lg:hidden"> {user ? `Hi ${capitalizeFirstLetter(user.username)} ` : "Hi "}Select Category and What To Do </h1>
+      <h1 className="text-sm md:text-lg lg:text-2xl px-5 py-3 max-lg:hidden"> {user ? `Hi ${capitalizeFirstLetter(user.username)}! ` : "Hi "}Select Category and What To Do </h1>
       <div className="dropdown">
         <label tabIndex={0} className="btn btn-xs sm:btn-sm md:btn-md lg:btn-md m-1">
           Films
