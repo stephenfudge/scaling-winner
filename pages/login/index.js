@@ -5,6 +5,7 @@ import axios from "axios";
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -23,6 +24,10 @@ export default function LoginPage() {
     }
   };
 
+
+  const togglePassword = () => {
+    setPasswordVisible(!passwordVisible);
+  }
   return (
     <div className="py-10">
       <div className="pt-3 flex flex-col justify-center px-6 lg:px-8 text-center">
@@ -47,20 +52,24 @@ export default function LoginPage() {
                   />
                 </div>
               </div>
-              {/* Email section required */}
+              {/* Password section required */}
               <div>
                 <label htmlFor="password" className="block font-medium">
                   Password
                 </label>
                 <div className="mt-1">
                   <input
-                    type="password"
+                    type={passwordVisible ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
                     required
-                    className="w-full border px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-1"
+                    className="w-full border px-3 py-2 mb-1 rounded-lg shadow-sm focus:outline-none focus:ring-1"
                   />
+                  <div>
+
+                  <button type="button" className="border border-info py-2 px-2" onClick={togglePassword}>Show Password</button>
+                  </div>
                 </div>
               </div>
 
