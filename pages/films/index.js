@@ -1,6 +1,6 @@
 import clientPromise from "../../lib/mongodb";
 import { useState } from "react";
-import FilmHeader from "../../components/film"
+import FilmHeader from "../../components/film";
 import Pagination from "../../components/Pagination";
 import Table from "../../components/film-table";
 
@@ -87,4 +87,3 @@ export async function getServerSideProps() {
     console.error(e);
   }
 }
-

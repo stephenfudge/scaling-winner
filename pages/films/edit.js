@@ -78,6 +78,7 @@ export default function EditFilms({ films }) {
                 <tr>
                   <th>Title</th>
                   <th>Format</th>
+                  <th>Year</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -86,6 +87,7 @@ export default function EditFilms({ films }) {
                   <tr key={movie._id}>
                     <td>{movie.title}</td>
                     <td>{movie.format}</td>
+                    <td>{movie.year}</td>
                     <td>
                       <button
                         onClick={() =>

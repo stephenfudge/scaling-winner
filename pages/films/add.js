@@ -7,6 +7,7 @@ export default function AddFilm() {
   const { user } = useAuth();
   const [title, setTitle] = useState("");
   const [format, setFormat] = useState("");
+  const [year, setYear] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
@@ -19,13 +20,14 @@ export default function AddFilm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title && format) {
+    if (title && format && year) {
       try {
         let response = await fetch("/api/films/addFilm", {
           method: "POST",
           body: JSON.stringify({
             title,
             format,
+            year,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -34,6 +36,7 @@ export default function AddFilm() {
         response = await response.json();
         setTitle("");
         setFormat("");
+        setYear("");
         setError("");
         setMessage(
           `Sucessfully added "${title}" in "${format}" format to the Feature Films database`
@@ -102,6 +105,27 @@ export default function AddFilm() {
                           <option value="BRD">BRD</option>
                           <option value="DVD">DVD</option>
                         </select>
+                      </div>
+                    </div>
+
+                    {/* Year */}
+                    <div className="md:flex md:items-center mb-6">
+                      <div className="md:w-1/3">
+                        <label
+                          htmlFor="season"
+                          className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                        >
+                          Year it was released
+                        </label>
+                      </div>
+                      <div className="md:w-2/3">
+                        <input
+                          className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700"
+                          type="number"
+                          name="year"
+                          value={year}
+                          onChange={(e) => setYear(e.target.value)}
+                        />
                       </div>
                     </div>
 
