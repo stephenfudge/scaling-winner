@@ -15,6 +15,7 @@ export default function FilmsTable({ currentFilms }) {
             <th></th>
             <th>Title</th>
             <th>Media Format</th>
+            <th className="max-md:hidden">Year</th>
           </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@ export default function FilmsTable({ currentFilms }) {
               <th></th>
               <td>{film.title}</td>
               <td>{film.format}</td>
+              <td className="max-md:hidden">{film.year}</td>
             </tr>
           ))}
         </tbody>

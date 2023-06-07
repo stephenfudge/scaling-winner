@@ -30,15 +30,54 @@ export default function Films({ films }) {
   );
 }
 
+// export async function getServerSideProps() {
+//   try {
+//     const client = await clientPromise;
+//     const db = client.db("movies");
+
+//     const films = await db
+//       .collection("films")
+//       .find({})
+//       .sort({ title: 1 })
+//       .toArray();
+
+//     return {
+//       props: { films: JSON.parse(JSON.stringify(films)) },
+//     };
+//   } catch (e) {
+//     console.error(e);
+//   }
+// }
+
 export async function getServerSideProps() {
   try {
     const client = await clientPromise;
     const db = client.db("movies");
 
+    // ignores the word The when it's the first word in the movie title
     const films = await db
       .collection("films")
-      .find({})
-      .sort({ title: 1 })
+      .aggregate([
+        {
+          $addFields: {
+            titleWithoutThe: {
+              $cond: [
+                { $eq: [{ $substr: ["$title", 0, 3] }, "The"] },
+                { $substr: ["$title", 4, -1] },
+                "$title",
+              ],
+            },
+          },
+        },
+        {
+          $sort: { titleWithoutThe: 1 },
+        },
+        {
+          $project: {
+            titleWithoutThe: 0,
+          },
+        },
+      ])
       .toArray();
 
     return {
@@ -48,3 +87,4 @@ export async function getServerSideProps() {
     console.error(e);
   }
 }
+
