@@ -99,7 +99,8 @@ export default function AddTv() {
                           step="1"
                           name="season"
                           value={season}
-                          onChange={(e) => parseInt(setSeason(e.target.value))}
+                          // onChange={(e) => parseInt(setSeason(e.target.value))}
+                          onChange={(e) => setSeason(e.target.value)}
                         />
                       </div>
                     </div>

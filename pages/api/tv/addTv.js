@@ -6,9 +6,12 @@ export default async function handler(req, res) {
     const db = client.db("movies");
     const collection = db.collection("tv");
     const { title, season, format } = req.body;
+
+    const seasonInt = parseInt(season, 10)
+
     const post = await collection.insertOne({
       title,
-      season,
+      season: seasonInt,
       format,
     });
     res.status(200).json(post);
