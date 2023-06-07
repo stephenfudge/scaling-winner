@@ -35,8 +35,30 @@ export async function getServerSideProps() {
 
     const films = await db
       .collection("films")
-      .find({ format: "BRD" })
-      .sort({ title: 1 })
+      .aggregate([
+        {
+          $match: { format: "BRD" },
+        },
+        {
+          $addFields: {
+            titleWithoutThe: {
+              $cond: [
+                { $eq: [{ $substr: ["$title", 0, 3] }, "The"] },
+                { $substr: ["$title", 4, -1] },
+                "$title",
+              ],
+            },
+          },
+        },
+        {
+          $sort: { titleWithoutThe: 1 },
+        },
+        {
+          $project: {
+            titleWithoutThe: 0,
+          },
+        },
+      ])
       .toArray();
 
     return {
