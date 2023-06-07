@@ -21,8 +21,8 @@ export default function TvTable({ currentTv, message }) {
             </tr>
           </thead>
           <tbody>
-            {currentTv.map((film) => (
-              <tr>
+            {currentTv.map((film, index) => (
+              <tr key={index}>
                 <th></th>
                 <td>{film.title}</td>
                 <td>{film.season}</td>

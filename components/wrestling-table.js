@@ -20,8 +20,8 @@ export default function WrestlingTable({ currentWrestling }) {
           </tr>
         </thead>
         <tbody>
-          {currentWrestling.map((film) => (
-            <tr key={film.id}>
+          {currentWrestling.map((film, index) => (
+            <tr key={index}>
               <th></th>
               <td>{film.promotion}</td>
               <td>{film.title}</td>

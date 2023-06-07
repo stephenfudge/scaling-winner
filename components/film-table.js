@@ -19,8 +19,8 @@ export default function FilmsTable({ currentFilms }) {
           </tr>
         </thead>
         <tbody>
-          {currentFilms.map((film) => (
-            <tr key={film.id}>
+          {currentFilms.map((film, index) => (
+            <tr key={index}>
               <th></th>
               <td>{film.title}</td>
               <td>{film.format}</td>
