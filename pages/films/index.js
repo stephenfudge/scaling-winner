@@ -30,25 +30,6 @@ export default function Films({ films }) {
   );
 }
 
-// export async function getServerSideProps() {
-//   try {
-//     const client = await clientPromise;
-//     const db = client.db("movies");
-
-//     const films = await db
-//       .collection("films")
-//       .find({})
-//       .sort({ title: 1 })
-//       .toArray();
-
-//     return {
-//       props: { films: JSON.parse(JSON.stringify(films)) },
-//     };
-//   } catch (e) {
-//     console.error(e);
-//   }
-// }
-
 export async function getServerSideProps() {
   try {
     const client = await clientPromise;
