@@ -10,7 +10,7 @@ export default function FilmsTable({ currentFilms }) {
   return (
     <div className="overflow-x-auto">
       <table className={`${style}`}>
-        <thead>
+        <thead className="text-secondary">
           <tr>
             <th></th>
             <th>Title</th>
@@ -22,7 +22,7 @@ export default function FilmsTable({ currentFilms }) {
           {currentFilms.map((film, index) => (
             <tr key={index}>
               <th></th>
-              <td>{film.title}</td>
+              <td className="whitespace-normal">{film.title}</td>
               <td>{film.format}</td>
               <td className="max-md:hidden">{film.year}</td>
             </tr>

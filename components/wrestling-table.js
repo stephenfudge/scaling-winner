@@ -2,15 +2,15 @@ export default function WrestlingTable({ currentWrestling }) {
   let style = "";
 
   if (currentWrestling.length < 10) {
-    style = "table table-compact table-zebra w-full table-auto lessthan"
+    style = "table table-compact table-zebra w-full  lessthan"
   } else {
-    style = "table table-compact table-zebra w-full table-auto"
+    style = "table table-compact table-zebra w-full "
   };
 
   return (
-    <div >
+    <div className="pl-6"> 
       <table className={`${style}`}>
-        <thead>
+        <thead className="text-secondary">
           <tr>
             <th></th>
             <th>Promotion</th>
@@ -24,7 +24,7 @@ export default function WrestlingTable({ currentWrestling }) {
             <tr key={index}>
               <th></th>
               <td>{film.promotion}</td>
-              <td>{film.title}</td>
+              <td className="whitespace-normal">{film.title}</td>
               <td className="max-md:hidden">{film.presentation}</td>
               <td className="max-md:hidden">{film.format}</td>
             </tr>

@@ -12,7 +12,7 @@ export default function TvTable({ currentTv, message }) {
     <div className="overflow-x-auto">
       {currentTv.length ? (
         <table className={`${style}`}>
-          <thead>
+          <thead className="text-secondary">
             <tr>
               <th></th>
               <th>Title</th>
@@ -24,7 +24,7 @@ export default function TvTable({ currentTv, message }) {
             {currentTv.map((film, index) => (
               <tr key={index}>
                 <th></th>
-                <td>{film.title}</td>
+                <td className="whitespace-normal">{film.title}</td>
                 <td>{film.season}</td>
                 <td>{film.format}</td>
               </tr>

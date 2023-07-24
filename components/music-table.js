@@ -22,8 +22,8 @@ export default function MusicTable({ currentMusic }) {
           {currentMusic.map((film, index) => (
             <tr key={index}>
               <th></th>
-              <td>{film.artist}</td>
-              <td>{film.title}</td>
+              <td className="whitespace-normal">{film.artist}</td>
+              <td className="whitespace-normal">{film.title}</td>
               <td className="max-md:hidden">{film.format}</td>
             </tr>
           ))}
