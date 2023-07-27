@@ -1,4 +1,4 @@
-export default function FilmsTable({ currentFilms }) {
+export default function FilmsTable({ currentFilms, onTitleClick }) {
   let style = "";
 
   if (currentFilms.length < 10) {
@@ -22,7 +22,7 @@ export default function FilmsTable({ currentFilms }) {
           {currentFilms.map((film, index) => (
             <tr key={index}>
               <th></th>
-              <td className="whitespace-normal">{film.title}</td>
+              <td className="whitespace-normal cursor-pointer" onClick={() => onTitleClick(film.tmdb_id)}>{film.title}</td>
               <td>{film.format}</td>
               <td className="max-md:hidden">{film.year}</td>
             </tr>
