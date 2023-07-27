@@ -25,6 +25,7 @@ export default function Films({ films }) {
     try {
       const response = await fetch(`/api/films/${movieId}`);
       const data = await response.json();
+      console.log(data);
       setSelectedFilm(data);
       setShowModal(true);
     } catch (error) {
