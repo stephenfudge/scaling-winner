@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   const { movieId } = req.query;
-  const API_KEY = process.env.TMDB_API_KEY;
+  const API_KEY = process.env.API_TOKEN;
 
   try {
     const options = {
