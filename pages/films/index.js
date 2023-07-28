@@ -1,5 +1,5 @@
 import clientPromise from "../../lib/mongodb";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FilmHeader from "../../components/film";
 import Pagination from "../../components/Pagination";
 import Table from "../../components/film-table";
