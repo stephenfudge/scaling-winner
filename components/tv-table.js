@@ -1,4 +1,4 @@
-export default function TvTable({ currentTv, message }) {
+export default function TvTable({ currentTv, message, onTitleClick }) {
     let style = "";
 
     if(currentTv.length < 10 ){
@@ -24,7 +24,7 @@ export default function TvTable({ currentTv, message }) {
             {currentTv.map((film, index) => (
               <tr key={index}>
                 <th></th>
-                <td className="whitespace-normal">{film.title}</td>
+                <td className="whitespace-normal cursor-pointer" onClick={() => onTitleClick(film.tmdb_id) }>{film.title}</td>
                 <td>{film.season}</td>
                 <td>{film.format}</td>
               </tr>
