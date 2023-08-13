@@ -26,8 +26,6 @@ export default function Tv({ tv }) {
     try {
       const response = await fetch(`/api/tv/${tvId}`);
       const data = await response.json();
-
-      console.log(data);
       setSelectedTv(data);
       setShowModal(true);
     } catch (error) {

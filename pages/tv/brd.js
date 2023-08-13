@@ -3,6 +3,7 @@ import { useState } from "react";
 import TvHeader from "../../components/tv";
 import Pagination from "../../components/Pagination";
 import Table from "../../components/tv-table";
+import TvModal from "../../components/tvModal";
 
 export default function TvBrd({ brd }) {
   const [page, setPage] = useState(1);
@@ -13,19 +14,46 @@ export default function TvBrd({ brd }) {
   const title = "TV BluRays";
   const message = "Currently I do not own any TV shows on BluRay";
 
+  const [selectedTv, setSelectedTv] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
   function handlePageChange(newPage) {
+    setSelectedTv(null);
+    setShowModal(false);
     setPage(newPage);
   }
+
+  const handleTitleClick = async (tvId) => {
+    try {
+      const response = await fetch(`/api/tv/${tvId}`);
+      const data = await response.json();
+      setSelectedTv(data);
+      setShowModal(true);
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <div>
       <TvHeader title={title} />
-      <Table currentTv={currentTv} message={message} />
+      <Table
+        currentTv={currentTv}
+        message={message}
+        onTitleClick={handleTitleClick}
+      />
       <Pagination
         page={page}
         totalPages={totalPages}
         handlePageChange={handlePageChange}
       />
+      {showModal && (
+        <TvModal movieDetails={selectedTv} onClose={handleCloseModal} />
+      )}
     </div>
   );
 }
