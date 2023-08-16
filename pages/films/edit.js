@@ -11,6 +11,8 @@ export default function EditFilms({ films }) {
   const [editId, setEditId] = useState("");
   const [editTitle, setEditTitle] = useState("");
   const [editFormat, setEditFormat] = useState("");
+  const [editYear, setEditYear] = useState("");
+  const [editTmdbId, setEditTmdbId] = useState("");
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
@@ -23,11 +25,13 @@ export default function EditFilms({ films }) {
     setMovies(films);
   }, [films]);
 
-  const handleEdit = (id, title, format) => {
+  const handleEdit = (id, title, format, year, tmdb_id) => {
     setEditing(true);
     setEditId(id);
     setEditTitle(title);
     setEditFormat(format);
+    setEditYear(year);
+    setEditTmdbId(tmdb_id);
   };
 
   const handleSave = async () => {
@@ -37,6 +41,8 @@ export default function EditFilms({ films }) {
         id: editId,
         title: editTitle,
         format: editFormat,
+        year: editYear,
+        tmdb_id: editTmdbId,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -50,6 +56,8 @@ export default function EditFilms({ films }) {
       setEditId("");
       setEditTitle("");
       setEditFormat("");
+      setEditYear("");
+      setEditTmdbId("");
       setMovies(
         movies.map((movie) => {
           if (movie._id === editId) {
@@ -57,6 +65,8 @@ export default function EditFilms({ films }) {
               ...movie,
               title: editTitle,
               format: editFormat,
+              year: editYear,
+              tmdb_id: editTmdbId,
             };
           } else {
             return movie;
@@ -79,6 +89,7 @@ export default function EditFilms({ films }) {
                   <th>Title</th>
                   <th>Format</th>
                   <th>Year</th>
+                  <th>TMDB ID</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -88,10 +99,17 @@ export default function EditFilms({ films }) {
                     <td>{movie.title}</td>
                     <td>{movie.format}</td>
                     <td>{movie.year}</td>
+                    <td>{movie.tmdb_id}</td>
                     <td>
                       <button
                         onClick={() =>
-                          handleEdit(movie._id, movie.title, movie.format)
+                          handleEdit(
+                            movie._id,
+                            movie.title,
+                            movie.format,
+                            movie.year,
+                            movie.tmdb_id
+                          )
                         }
                       >
                         Edit
@@ -151,6 +169,48 @@ export default function EditFilms({ films }) {
                           <option value="BRD">BRD</option>
                           <option value="DVD">DVD</option>
                         </select>
+                      </div>
+                    </div>
+
+                    {/* Year */}
+                    <div className="md:flex md:items-center mb-6">
+                      <div className="md:w-1/3">
+                        <label
+                          htmlFor="season"
+                          className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                        >
+                          Year it was released
+                        </label>
+                      </div>
+                      <div className="md:w-2/3">
+                        <input
+                          className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700"
+                          type="number"
+                          name="year"
+                          value={editYear}
+                          onChange={(e) => setEditYear(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    {/* TMDB ID */}
+                    <div className="md:flex md:items-center mb-6">
+                      <div className="md:w-1/3">
+                        <label
+                          htmlFor="tmdb_id"
+                          className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                        >
+                          TMDB ID
+                        </label>
+                      </div>
+                      <div className="md:w-2/3">
+                        <input
+                          className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700"
+                          type="number"
+                          name="tmdb_id"
+                          value={editTmdbId}
+                          onChange={(e) => setEditTmdbId(e.target.value)}
+                        />
                       </div>
                     </div>
                   </form>
