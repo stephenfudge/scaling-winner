@@ -8,6 +8,7 @@ export default function AddTv() {
   const [title, setTitle] = useState("");
   const [season, setSeason] = useState();
   const [format, setFormat] = useState("");
+  const [tmdb_id, setTmdbId] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
@@ -20,7 +21,7 @@ export default function AddTv() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title && season && format) {
+    if (title && season && format && tmdb_id) {
       try {
         let response = await fetch("/api/tv/addTv", {
           method: "POST",
@@ -28,6 +29,7 @@ export default function AddTv() {
             title,
             season,
             format,
+            tmdb_id,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -37,6 +39,7 @@ export default function AddTv() {
         setTitle("");
         setSeason();
         setFormat("");
+        setTmdbId("");
         setError("");
         setMessage(
           `Successfully added season ${season} of "${title}" in the "${format}" format!`
@@ -128,6 +131,27 @@ export default function AddTv() {
                           <option value="BRD">BRD</option>
                           <option value="DVD">DVD</option>
                         </select>
+                      </div>
+                    </div>
+
+                    {/* TMDB ID */}
+                    <div className="md:flex md:items-center mb-6">
+                      <div className="md:w-1/3">
+                        <label
+                          htmlFor="tmdb_id"
+                          className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                        >
+                          TMDB ID
+                        </label>
+                      </div>
+                      <div className="md:w-2/3">
+                        <input
+                          className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700"
+                          type="number"
+                          name="tmdb_id"
+                          value={tmdb_id}
+                          onChange={(e) => setTmdbId(e.target.value)}
+                        />
                       </div>
                     </div>
 

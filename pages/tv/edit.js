@@ -12,6 +12,7 @@ export default function EditTv({ films }) {
   const [editTitle, setEditTitle] = useState("");
   const [editSeason, setEditSeason] = useState("");
   const [editFormat, setEditFormat] = useState("");
+  const [editTmdbId, setEditTmdbId] = useState("");
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
@@ -24,12 +25,13 @@ export default function EditTv({ films }) {
     setTv(tv);
   }, [tv]);
 
-  const handleEdit = (id, title, season, format) => {
+  const handleEdit = (id, title, season, format, tmdb_id) => {
     setEditing(true);
     setEditId(id);
     setEditTitle(title);
     setEditSeason(season);
     setEditFormat(format);
+    setEditTmdbId(tmdb_id);
   };
 
   const handleSave = async () => {
@@ -40,6 +42,7 @@ export default function EditTv({ films }) {
         title: editTitle,
         season: editSeason,
         format: editFormat,
+        tmdb_id: editTmdbId,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -54,6 +57,7 @@ export default function EditTv({ films }) {
       setEditTitle("");
       setEditSeason("");
       setEditFormat("");
+      setEditTmdbId("");
       setTv(
         tv.map((tv) => {
           if (tv._id === editId) {
@@ -62,6 +66,7 @@ export default function EditTv({ films }) {
               title: editTitle,
               season: editSeason,
               format: editFormat,
+              tmdb_id: editTmdbId,
             };
           } else {
             return tv;
@@ -85,6 +90,7 @@ export default function EditTv({ films }) {
                   <th>Title</th>
                   <th>Season</th>
                   <th>Format</th>
+                  <th>TMDB ID</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -94,6 +100,7 @@ export default function EditTv({ films }) {
                     <td>{movie.title}</td>
                     <td>{movie.season}</td>
                     <td>{movie.format}</td>
+                    <td>{movie.tmdb_id}</td>
                     <td>
                       <button
                         onClick={() =>
@@ -101,7 +108,8 @@ export default function EditTv({ films }) {
                             movie._id,
                             movie.title,
                             movie.season,
-                            movie.format
+                            movie.format,
+                            movie.tmdb_id
                           )
                         }
                       >
@@ -186,6 +194,27 @@ export default function EditTv({ films }) {
                           <option value="BRD">BRD</option>
                           <option value="DVD">DVD</option>
                         </select>
+                      </div>
+                    </div>
+                   
+                    {/* TMDB ID */}
+                    <div className="md:flex md:items-center mb-6">
+                      <div className="md:w-1/3">
+                        <label
+                          htmlFor="tmdb_id"
+                          className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                        >
+                          TMDB ID
+                        </label>
+                      </div>
+                      <div className="md:w-2/3">
+                        <input
+                          className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700"
+                          type="number"
+                          name="tmdb_id"
+                          value={editTmdbId}
+                          onChange={(e) => setEditTmdbId(e.target.value)}
+                        />
                       </div>
                     </div>
                   </form>

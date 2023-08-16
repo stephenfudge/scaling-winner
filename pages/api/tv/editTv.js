@@ -6,9 +6,9 @@ export default async function handler(req, res) {
     const client = await clientPromise;
     const db = client.db("movies");
     const collection = db.collection("tv");
-    const { id, title, season, format } = req.body;
+    const { id, title, season, format, tmdb_id } = req.body;
     const filter = { _id: ObjectId(id) };
-    const update = { $set: { title, season, format } };
+    const update = { $set: { title, season, format, tmdb_id } };
     const result = await collection.updateOne(filter, update);
     res
       .status(200)

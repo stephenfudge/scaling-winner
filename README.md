@@ -7,6 +7,7 @@ This is a full stack web application built with Next.js, MongoDB, Tailwind CSS a
 * [Features](#features)
 * [Screenshot](#screenshot)  
 * [Live Demo](#live-demo)
+* [API Usage](#api-usage)
 * [Contributing](#contributing)
 * [About the Author](#about-the-author)
 * [License](#license)
@@ -27,6 +28,10 @@ This is a full stack web application built with Next.js, MongoDB, Tailwind CSS a
 ## Live Demo
 
 [Movie Database](https://scaling-winner.vercel.app/)   
+
+## API Usage
+
+This project utilizes The Movie Database (TMDb) API to gather movie information for feature films and TV shows. The API provides access to a wealth of data including details about movies, TV shows, cast and crew, reviews, and more. It is being used to display the Title, Poster, Overview and the link to the IMDB for the feature film or TV show. You can learn more about the API and explore its capabilities by visiting [The Movie Database website](https://www.themoviedb.org/).
 
 ## Contributing
 
