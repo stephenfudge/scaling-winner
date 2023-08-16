@@ -6,14 +6,15 @@ export default async function handler(req, res) {
     const client = await clientPromise;
     const db = client.db("movies");
     const collection = db.collection("films");
-    const { title, format, year } = req.body;
+    const { title, format, year, tmdb_id } = req.body;
     
     const yearInt = parseInt(year, 10)
     
     const post = await collection.insertOne({
       title,
       format,
-      year: yearInt
+      year: yearInt, 
+      tmdb_id
     });
     res.status(200).json(post);
   } catch (e) {
@@ -21,3 +22,6 @@ export default async function handler(req, res) {
     throw new Error(e).message;
   }
 }
+
+
+// add tmdb_id as int32 here and in the add frontend logic

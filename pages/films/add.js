@@ -8,6 +8,7 @@ export default function AddFilm() {
   const [title, setTitle] = useState("");
   const [format, setFormat] = useState("");
   const [year, setYear] = useState("");
+  const [tmdb_id, setTmdbId] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
@@ -20,7 +21,7 @@ export default function AddFilm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title && format && year) {
+    if (title && format && year && tmdb_id) {
       try {
         let response = await fetch("/api/films/addFilm", {
           method: "POST",
@@ -28,6 +29,7 @@ export default function AddFilm() {
             title,
             format,
             year,
+            tmdb_id,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -37,6 +39,7 @@ export default function AddFilm() {
         setTitle("");
         setFormat("");
         setYear("");
+        setTmdbId("");
         setError("");
         setMessage(
           `Sucessfully added "${title}" in "${format}" format to the Feature Films database`
@@ -125,6 +128,27 @@ export default function AddFilm() {
                           name="year"
                           value={year}
                           onChange={(e) => setYear(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    {/* TMDB ID */}
+                    <div className="md:flex md:items-center mb-6">
+                      <div className="md:w-1/3">
+                        <label
+                          htmlFor="tmdb_id"
+                          className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                        >
+                          TMDB ID
+                        </label>
+                      </div>
+                      <div className="md:w-2/3">
+                        <input
+                          className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700"
+                          type="number"
+                          name="tmdb_id"
+                          value={tmdb_id}
+                          onChange={(e) => setTmdbId(e.target.value)}
                         />
                       </div>
                     </div>
