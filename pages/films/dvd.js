@@ -7,12 +7,9 @@ import MovieModal from "../../components/modal";
 
 export default function FilmsDvd({ dvd }) {
   const [page, setPage] = useState(1);
-  const limit = 18;
+  const limit = 17;
   const totalPages = Math.ceil(dvd.length / limit);
-  const isLastPage = page === totalPages;
-  const adjustedLimit = isLastPage ? limit + 1 : limit;
-  const startIndex = isLastPage ? (page - 2) * limit + 1 : (page - 1) * limit;
-  const currentFilms = dvd.slice(startIndex, startIndex + adjustedLimit);
+  const currentFilms = dvd.slice((page - 1) * limit, page * limit)
   const title = "Feature Films DVDs";
 
   const [selectedFilm, setSelectedFilm] = useState(null)

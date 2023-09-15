@@ -7,7 +7,7 @@ import MovieModal from "../../components/modal";
 
 export default function FilmsBrd({ brd }) {
   const [page, setPage] = useState(1);
-  const limit = 18;
+  const limit = 17;
   const totalPages = Math.ceil(brd.length / limit);
   const currentFilms = brd.slice((page - 1) * limit, page * limit);
   const title = "Feature Films BluRays";
